@@ -9,14 +9,19 @@ namespace TowerDefense_Test
 {
     class Van
     {
-        Size vanSize;
-        Point vanLocation;
-        Color vanColor;
-        Path path;
-        
+        private Size vanSize;
+        private Size vanSizeNow;
+        private Point vanLocation;
+        private Color vanColor;
+        private Path path;
+        private float healthPointNow;
+        private float healthPointMax;
+        private int turn;
 
-        public Van(Color vanColor, Path path, Size vanSize, Point vanLocationMiddle)
+        public Van(float healthPointMax, float healthPointStart, Color vanColor, Path path, Size vanSize, Point vanLocationMiddle)
         {
+            this.healthPointMax = healthPointMax;
+            this.healthPointNow = healthPointStart;
             this.path = path;
             this.vanColor = vanColor;
             this.vanSize = vanSize;
@@ -35,6 +40,24 @@ namespace TowerDefense_Test
         {
             get { return vanColor; }
             set { vanColor = value; }
+        }
+        public void MoveTimer()
+        {
+
+        }
+        private void CheckForRotation() // Drüber hinaus
+        {
+
+        }
+        public void Damage(float damage)
+        {
+            healthPointNow =- damage;
+        }
+        public bool Death()
+        {
+            if (healthPointNow < 0)
+                return true;
+            return false;
         }
     }
 }

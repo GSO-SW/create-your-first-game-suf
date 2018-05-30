@@ -12,9 +12,23 @@ namespace TowerDefense_Test
 {
     public partial class Main : Form
     {
+        Path p;
+        Van v;
         public Main()
         {
             InitializeComponent();
+            p = new Path(new Point[]
+            {
+                new Point(0, 50),
+                new Point(100, 50),
+                new Point(100, 100)
+            });
+            v = new Van(Color.Aqua, p, new Size(10, 10), p.StartPath);
+
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label_Info.Text = v.LocationMiddle.ToString();
         }
     }
 }
