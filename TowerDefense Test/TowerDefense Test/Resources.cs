@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TowerDefense_Test
 {
-    class Ressourcen
+    class Resources
     {
+        
     }
 }

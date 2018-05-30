@@ -12,11 +12,12 @@ namespace TowerDefense_Test
         Size vanSize;
         Point vanLocation;
         Color vanColor;
-        Path weg;
+        Path path;
+        
 
-        public Van(Color vanColor, Path weg, Size vanSize, Point vanLocationMiddle)
+        public Van(Color vanColor, Path path, Size vanSize, Point vanLocationMiddle)
         {
-            this.weg = weg;
+            this.path = path;
             this.vanColor = vanColor;
             this.vanSize = vanSize;
             this.LocationMiddle = vanLocationMiddle;
@@ -28,10 +29,7 @@ namespace TowerDefense_Test
         }
         public Rectangle NeckOfTheWoods
         {
-            get
-            {
-                return new Rectangle(vanLocation, vanSize);
-            }
+            get { return new Rectangle(vanLocation, vanSize); }
         }
         public Color VanColor
         {

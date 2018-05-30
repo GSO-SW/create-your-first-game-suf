@@ -1,6 +1,6 @@
 ﻿namespace TowerDefense_Test
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Erforderliche Designervariable.
