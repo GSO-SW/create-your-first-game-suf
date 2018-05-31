@@ -31,11 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.label_Info = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timer
             // 
             this.timer.Enabled = true;
+            this.timer.Interval = 10;
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label_Info
@@ -47,11 +49,22 @@
             this.label_Info.TabIndex = 0;
             this.label_Info.Text = "label1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 29);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 562);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label_Info);
             this.Name = "Main";
             this.Text = "Form1";
@@ -64,6 +77,7 @@
 
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label label_Info;
+        private System.Windows.Forms.Button button1;
     }
 }
 

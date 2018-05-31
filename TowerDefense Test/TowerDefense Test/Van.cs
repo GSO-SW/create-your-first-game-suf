@@ -13,10 +13,11 @@ namespace TowerDefense_Test
         private Size vanSizeNow;
         private Point vanLocation;
         private Color vanColor;
+        private Size vanDirection;
         private Path path;
         private float healthPointNow;
         private float healthPointMax;
-        private int turn;
+        private int pathPart;
 
         public Van(float healthPointMax, float healthPointStart, Color vanColor, Path path, Size vanSize, Point vanLocationMiddle)
         {
@@ -41,17 +42,36 @@ namespace TowerDefense_Test
             get { return vanColor; }
             set { vanColor = value; }
         }
-        public void MoveTimer()
+        public void Move()
         {
-
+            if (LocationMiddle == path.PathPoints[pathPart])
+            {
+                if (LocationMiddle == path.EndPath)
+                {
+                    vanDirection = new Size();
+                }
+                else
+                {
+                    pathPart++;
+                    vanDirection = GetDirection();
+                }
+            }
+            LocationMiddle = Point.Add(LocationMiddle, vanDirection);
         }
-        private void CheckForRotation() // Drüber hinaus
+        private Size GetDirection()
         {
-
+            Point p1 = path.PathPoints[pathPart - 1];
+            Point p2 = path.PathPoints[pathPart];
+            Point p = new Point(p2.X - p1.X, p2.Y - p1.Y);
+            if (p.X < 0) { return new Size(-1, 0); }
+            if (p.X > 0) { return new Size(1, 0); }
+            if (p.Y < 0) { return new Size(0, -1); }
+            if (p.Y > 0) { return new Size(0, 1); }
+            return new Size();
         }
         public void Damage(float damage)
         {
-            healthPointNow =- damage;
+            healthPointNow = -damage;
         }
         public bool Death()
         {

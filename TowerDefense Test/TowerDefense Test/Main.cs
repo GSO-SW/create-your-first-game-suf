@@ -23,11 +23,18 @@ namespace TowerDefense_Test
                 new Point(100, 50),
                 new Point(100, 100)
             });
-            v = new Van(Color.Aqua, p, new Size(10, 10), p.StartPath);
+            v = new Van(10f, 10f, Color.Aqua, p, new Size(10, 10), p.StartPath);
 
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            v.Move();
+            label_Info.Text = v.LocationMiddle.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            v.Move();
             label_Info.Text = v.LocationMiddle.ToString();
         }
     }
