@@ -48,6 +48,17 @@ namespace TowerDefense_Test
         {
             get { return angle; }
         }
+        public int Stage
+        {
+            get
+            {
+                if (healthPointNow < 0)
+                    return -1; //Tod
+                if (finish)
+                    return 0; //Ende
+                return 1; //Driving
+            }
+        }
         public void Move()
         {
             if (LocationMiddle == path.PathPoints[pathPart] && !finish)
@@ -86,12 +97,6 @@ namespace TowerDefense_Test
         public void Damage(float damage)
         {
             healthPointNow = -damage;
-        }
-        public bool Death()
-        {
-            if (healthPointNow < 0)
-                return true;
-            return false;
         }
     }
 }
