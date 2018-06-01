@@ -21,7 +21,9 @@ namespace TowerDefense_Test
             {
                 new Point(0, 50),
                 new Point(100, 50),
-                new Point(100, 100)
+                new Point(100, 100),
+                new Point(100, 150),
+                new Point(0, 150)
             });
             v = new Van(10f, 10f, Color.Aqua, p, new Size(10, 10), p.StartPath);
 
@@ -29,13 +31,14 @@ namespace TowerDefense_Test
         private void timer1_Tick(object sender, EventArgs e)
         {
             v.Move();
+            checkBox1.Location = v.LocationMiddle;
             label_Info.Text = v.LocationMiddle.ToString();
+            label1.Text = v.Direction.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            v.Move();
-            label_Info.Text = v.LocationMiddle.ToString();
+            v.LocationMiddle = p.StartPath;
         }
     }
 }
