@@ -34,6 +34,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.candyLabel = new System.Windows.Forms.Label();
+            this.candyAnzeigeLabel = new System.Windows.Forms.Label();
+            this.lebensLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lebensAnzeigeLabel = new System.Windows.Forms.Label();
+            this.tower1Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer
@@ -83,11 +89,71 @@
             this.checkBox1.TabIndex = 3;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // candyLabel
+            // 
+            this.candyLabel.AutoSize = true;
+            this.candyLabel.Location = new System.Drawing.Point(810, 30);
+            this.candyLabel.Name = "candyLabel";
+            this.candyLabel.Size = new System.Drawing.Size(48, 17);
+            this.candyLabel.TabIndex = 4;
+            this.candyLabel.Text = "Candy";
+            // 
+            // candyAnzeigeLabel
+            // 
+            this.candyAnzeigeLabel.AutoSize = true;
+            this.candyAnzeigeLabel.Location = new System.Drawing.Point(810, 60);
+            this.candyAnzeigeLabel.Name = "candyAnzeigeLabel";
+            this.candyAnzeigeLabel.Size = new System.Drawing.Size(32, 17);
+            this.candyAnzeigeLabel.TabIndex = 5;
+            this.candyAnzeigeLabel.Text = "100";
+            // 
+            // lebensLabel
+            // 
+            this.lebensLabel.AutoSize = true;
+            this.lebensLabel.Location = new System.Drawing.Point(810, 180);
+            this.lebensLabel.Name = "lebensLabel";
+            this.lebensLabel.Size = new System.Drawing.Size(49, 17);
+            this.lebensLabel.TabIndex = 6;
+            this.lebensLabel.Text = "Kinder";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "label2";
+            // 
+            // lebensAnzeigeLabel
+            // 
+            this.lebensAnzeigeLabel.AutoSize = true;
+            this.lebensAnzeigeLabel.Location = new System.Drawing.Point(810, 210);
+            this.lebensAnzeigeLabel.Name = "lebensAnzeigeLabel";
+            this.lebensAnzeigeLabel.Size = new System.Drawing.Size(24, 17);
+            this.lebensAnzeigeLabel.TabIndex = 8;
+            this.lebensAnzeigeLabel.Text = "10";
+            // 
+            // tower1Label
+            // 
+            this.tower1Label.AutoSize = true;
+            this.tower1Label.Location = new System.Drawing.Point(813, 315);
+            this.tower1Label.Name = "tower1Label";
+            this.tower1Label.Size = new System.Drawing.Size(59, 17);
+            this.tower1Label.TabIndex = 9;
+            this.tower1Label.Text = "Tower 1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 593);
+            this.Controls.Add(this.tower1Label);
+            this.Controls.Add(this.lebensAnzeigeLabel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lebensLabel);
+            this.Controls.Add(this.candyAnzeigeLabel);
+            this.Controls.Add(this.candyLabel);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -108,6 +174,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label candyLabel;
+        private System.Windows.Forms.Label candyAnzeigeLabel;
+        private System.Windows.Forms.Label lebensLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lebensAnzeigeLabel;
+        private System.Windows.Forms.Label tower1Label;
     }
 }
 

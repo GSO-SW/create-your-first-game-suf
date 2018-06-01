@@ -77,6 +77,8 @@ namespace TowerDefense_Test
             base.OnPaint(e);
             Pen linePen = Pens.Black;
             e.Graphics.DrawLine(linePen, 800,0,800,600);
+            e.Graphics.DrawLine(linePen, 800,150,916,150);
+            e.Graphics.DrawLine(linePen, 800, 300, 916, 300);
         }
 
         private void Main_Load(object sender, EventArgs e)
