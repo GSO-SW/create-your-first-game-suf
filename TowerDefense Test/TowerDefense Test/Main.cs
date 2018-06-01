@@ -72,5 +72,16 @@ namespace TowerDefense_Test
                 a++;
             }
         }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            Pen linePen = Pens.Black;
+            e.Graphics.DrawLine(linePen, 800,0,800,600);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
