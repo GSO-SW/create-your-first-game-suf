@@ -39,18 +39,26 @@ namespace TowerDefense_Test
         {
             for (int i = 0; i < vanInAction.Length - 1; i++)
             {
-                switch (vanInAction[i].Stage)
+                if (vanInAction[i] != null)
                 {
-                    case -1:
-                        vanInAction[i] = null;
-                        break;
-                    case 0:
-                        vanInAction[i] = null;
-                        //Kinderleben abziehen
-                        break;
-                    case 1:
-                        vanInAction[i].Move();
-                        break;
+                    switch (vanInAction[i].Stage)
+                    {
+                        case -1:
+                            vanInAction[i] = null;
+                            break;
+                        case 0:
+                            vanInAction[i] = null;
+                            //Kinderleben abziehen
+                            break;
+                        case 1:
+                            vanInAction[i].Move();
+                            break;
+                    }
+                }
+                if (vanInAction.Length >= 6)
+                if (vanInAction[5] != null)
+                {
+                    label_Info.Text = vanInAction[5].LocationMiddle.ToString();
                 }
             }
         }
@@ -60,7 +68,8 @@ namespace TowerDefense_Test
             {
                 Array.Resize(ref vanInAction, vanInAction.Length + 1);
                 vanInAction[vanInAction.Length - 1] = van[a];
-                a++;                
+                label1.Text = a.ToString();
+                a++;
             }
         }
     }
