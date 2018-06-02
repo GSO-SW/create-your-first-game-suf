@@ -34,6 +34,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.candyLabel = new System.Windows.Forms.Label();
+            this.candyAnzeigeLabel = new System.Windows.Forms.Label();
+            this.lebensLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lebensAnzeigeLabel = new System.Windows.Forms.Label();
+            this.tower1Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer
