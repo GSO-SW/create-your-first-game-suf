@@ -22,22 +22,23 @@ namespace TowerDefense_Test
 
             path = new Path(new Point[]
             {
-                new Point(0, 50),
-                new Point(100, 50),
                 new Point(100, 100),
-                new Point(100, 150),
-                new Point(0, 150)
+                new Point(100, 300),
+                new Point(300, 300),
+                new Point(300, 100),
+                new Point(100, 100)
             });
             van = new Van[10];
-            vanInAction = new Van[0];
-            for (int i = 0; i < van.Length - 1; i++)
-            {
-                van[i] = new Van(10f, 10f, Color.Aqua, path, new Size(10, 10), path.StartPath);
-            }
+            vanInAction = new Van[1];
+            vanInAction[0] = new Van(10f, 10f, Color.Aqua, path, new Size(100, 50), 20, path.StartPath);
+            //for (int i = 0; i < van.Length - 1; i++)
+            //{
+            //    van[i] = new Van(10f, 10f, Color.Aqua, path, new Size(10, 10), 20, path.StartPath);
+            //}
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < vanInAction.Length - 1; i++)
+            for (int i = 0; i <= vanInAction.Length - 1; i++)
             {
                 if (vanInAction[i] != null)
                 {
@@ -52,15 +53,11 @@ namespace TowerDefense_Test
                             break;
                         case 1:
                             vanInAction[i].Move();
+                            Invalidate();
                             break;
                     }
                 }
-                if (vanInAction.Length >= 6)
-                if (vanInAction[5] != null)
-                {
-                    label_Info.Text = vanInAction[5].LocationMiddle.ToString();
-                }
-            }
+            }            
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -71,6 +68,30 @@ namespace TowerDefense_Test
                 label1.Text = a.ToString();
                 a++;
             }
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            Graphics graphics = e.Graphics;
+            Font font = new Font("Comic Sans MS", 11);
+            Pen stift = Pens.Black;
+            SolidBrush Ausfüller = new SolidBrush(Color.Black);
+            SolidBrush Text = new SolidBrush(Color.White);
+            Rectangle Van = new Rectangle(10, 20, 50, 100);
+            Rectangle Fenster = new Rectangle(50, 100, 50, 75);
+            graphics.DrawRectangle(stift, vanInAction[0].Body);
+            graphics.FillRectangle(Ausfüller, vanInAction[0].Window);
+            graphics.FillEllipse(Ausfüller, 3, 30, 20, 20);
+            graphics.FillEllipse(Ausfüller, 8, 30, 20, 20);
+            graphics.FillEllipse(Ausfüller, 3, 50, 20, 20);
+            graphics.FillEllipse(Ausfüller, 8, 50, 20, 20);
+            graphics.RotateTransform(90);
+            graphics.DrawString(" Free \nCandy", font, Text, 38, -60);
+            graphics.RotateTransform(270);
+
+            label1.Text = "TopLeft: " + vanInAction[0].LocationTopLeft.ToString();
+            label_Info.Text = "Middle: " + vanInAction[0].LocationMiddle.ToString();
+
         }
     }
 }
