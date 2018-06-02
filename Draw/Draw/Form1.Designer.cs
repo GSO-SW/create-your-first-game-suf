@@ -1,6 +1,6 @@
-﻿namespace TowerDefense_Test
+﻿namespace Draw
 {
-    partial class Main
+    partial class Form1
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,30 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 10;
-            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // Main
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 488);
-            this.Name = "Main";
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timer;
     }
 }
 

@@ -9,22 +9,21 @@ namespace TowerDefense_Test
 {
     class Van
     {
-        private Size vanSize;
-        private Size vanSizeTurned;
-        private Size vanWindowSize;
-        private Size vanWindowSizeTurned;
+        private Size vanSize, vanSizeTurned;
+        private Size vanWindowSize, vanWindowSizeTurned;
         private Color vanColor;
         private Size vanDirection;
         private Path path;
         private Point location;
-        private Rectangle vanBody, vanWindow;
+        private Point[] bodyTriangle, windowTriangle;
+        private Rectangle vanBody, vanWheel1, vanWheel2;
         private float healthPointNow;
         private float healthPointMax;
         private int pathPart;
         private int angle;
         private bool finish;
 
-        public Van(float healthPointMax, float healthPointStart, Color vanColor, Path path, Size vanSize, int windowWidth, Point vanLocationMiddle)
+        public Van(float healthPointMax, float healthPointStart, Color vanColor, Path path, Size vanSize, Size vanWindowSize, Point vanLocationMiddle, int wheelWidth)
         {
             this.healthPointMax = healthPointMax;
             this.healthPointNow = healthPointStart;
@@ -32,22 +31,31 @@ namespace TowerDefense_Test
             this.vanColor = vanColor;
             this.vanSize = vanSize;
             this.vanSizeTurned = new Size(vanSize.Height, vanSize.Width);
-            this.vanWindowSize = Size.Subtract(this.vanSize, new Size(windowWidth, 0));
-            this.vanWindowSizeTurned = Size.Subtract(this.vanSizeTurned, new Size(0, windowWidth));
+            this.bodyTriangle = new Point[3];
+            this.windowTriangle = new Point[3];
+            this.vanWindowSize = vanWindowSize;
+            this.vanWindowSizeTurned = new Size(vanWindowSize.Height, vanWindowSize.Width);
+            this.vanWheel1 = new Rectangle(new Point(), new Size(wheelWidth, wheelWidth));
+            this.vanWheel2 = new Rectangle(new Point(), new Size(wheelWidth, wheelWidth));
             this.vanBody.Size = vanSize;
             this.LocationMiddle = vanLocationMiddle;
             this.finish = false;
         }
         public Point LocationTopLeft
         {
-            get { return new Point(location.X - vanBody.Size.Width / 2, location.Y - vanBody.Size.Height); }
+            get { return Point.Subtract(location, SizeLeftTopToMiddle); }
+            set
+            {
+                location = Point.Add(value, SizeLeftTopToMiddle);
+                vanBody.Location = value;
+            }
         }
         public Point LocationMiddle
         {
             get { return location; }
             set
             {
-                vanBody.Location = new Point(value.X - vanBody.Width / 2, value.Y - vanBody.Height / 2);
+                vanBody.Location = Point.Subtract(value, SizeLeftTopToMiddle);
                 location = value;
             }
         }
@@ -55,9 +63,23 @@ namespace TowerDefense_Test
         {
             get { return vanBody; }
         }
-        public Rectangle Window
+        public Point[] BodyTriangle
         {
-            get { return vanWindow; }
+            get { return bodyTriangle; }
+        }
+        public Point[] WindowTriangle
+        {
+            get { return windowTriangle; }
+        }
+        public Rectangle Wheel1
+        {
+            get { return vanWheel1; }
+            set { vanWheel1 = value; }
+        }
+        public Rectangle Wheel2
+        {
+            get { return vanWheel2; }
+            set { vanWheel2 = value; }
         }
         public PointF Text
         {
@@ -83,6 +105,10 @@ namespace TowerDefense_Test
                 return 1; //Driving
             }
         }
+        public Size SizeLeftTopToMiddle
+        {
+            get { return new Size(vanBody.Width / 2, vanBody.Height / 2); }
+        }
         public void Move()
         {
             if (LocationMiddle == path.PathPoints[pathPart] && !finish)
@@ -107,7 +133,16 @@ namespace TowerDefense_Test
             if (!finish)
             {
                 LocationMiddle = Point.Add(LocationMiddle, vanDirection);
-                vanWindow.Location = Point.Add(vanWindow.Location, vanDirection);
+                for (int i = 0; i <= bodyTriangle.Length - 1; i++)
+                {
+                    bodyTriangle[i] = Point.Add(bodyTriangle[i], vanDirection);
+                }
+                for (int i = 0; i <= bodyTriangle.Length - 1; i++)
+                {
+                    windowTriangle[i] = Point.Add(windowTriangle[i], vanDirection);
+                }
+                vanWheel1.Location = Point.Add(vanWheel1.Location, vanDirection);
+                vanWheel2.Location = Point.Add(vanWheel2.Location, vanDirection);
             }
 
         }
@@ -122,38 +157,47 @@ namespace TowerDefense_Test
             if (p.Y > 0) { Turn(90); return new Size(0, 1); }
             return new Size();
         }
-        public void Turn(int angle)
+        private void Turn(int angle)
         {
             this.angle = angle;
             switch (angle)
             {
                 case 0:
                     UpdateVan(vanSize);
-                    UpdateWindow(vanWindowSize, LocationTopLeft);
+                    //UpdateWheels(new Point(vanBody.Left + 10, vanBody.Bottom - vanWheel1.Width / 3), new Point(vanBody.Right - 30 - vanWheel2.Width, vanBody.Bottom - vanWheel2.Width / 3));
                     break;
                 case 90:
                     UpdateVan(vanSizeTurned);
-                    UpdateWindow(vanWindowSizeTurned, LocationTopLeft);
                     break;
                 case 180:
                     UpdateVan(vanSize);
-                    UpdateWindow(vanWindowSize, new Point(LocationTopLeft.X + vanSize.Width - vanWindowSize.Width, 0));
                     break;
                 case 270:
                     UpdateVan(vanSizeTurned);
-                    UpdateWindow(vanWindowSizeTurned, new Point(0, LocationTopLeft.Y + vanSize.Height - vanWindowSize.Height));
                     break;
             }
         }
-        public void UpdateVan(Size vanSize)
+        private void UpdateVan(Size vanSize)
         {
             vanBody.Size = vanSize;
             vanBody.Location = LocationTopLeft;
         }
-        public void UpdateWindow(Size vanWindowSize, Point vanWindowPoint)
+        private void UpdateBodyTriangle(Point bodyLocation, int Width, int Height)
         {
-            vanWindow.Size = vanWindowSize;
-            vanWindow.Location = vanWindowPoint;
+            this.bodyTriangle[0] = bodyLocation;
+            this.bodyTriangle[1] = new Point(Width, bodyLocation.Y);
+            this.bodyTriangle[2] = new Point(bodyLocation.X, Height);
+        }
+        private void UpdateWindowTriangle(Point windowLocation, int Width, int Height)
+        {
+            this.windowTriangle[0] = windowLocation;
+            this.windowTriangle[1] = new Point(Width, windowLocation.Y);
+            this.windowTriangle[2] = new Point(windowLocation.X, Height);
+        }
+        private void UpdateWheels(Point vanWheel1Point, Point vanWheel2Point)
+        {
+            vanWheel1.Location = vanWheel1Point;
+            vanWheel2.Location = vanWheel2Point;
         }
         public void Damage(float damage)
         {
