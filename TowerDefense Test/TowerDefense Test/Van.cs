@@ -71,7 +71,7 @@ namespace TowerDefense_Test
                     finish = true;
                 }
             }
-            if (!finish)
+            if (Stage == 1)
             {
                 LocationMiddle = Point.Add(LocationMiddle, vanDirection);
             }
