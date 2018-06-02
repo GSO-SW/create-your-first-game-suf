@@ -79,6 +79,13 @@ namespace TowerDefense_Test
             SolidBrush Text = new SolidBrush(Color.White);
             Rectangle Van = new Rectangle(10, 20, 50, 100);
             Rectangle Fenster = new Rectangle(50, 100, 50, 75);
+
+            Pen linePen = Pens.Black;
+            graphics.DrawLine(linePen, 800, 0, 800, 600);
+            graphics.DrawLine(linePen, 800, 150, 916, 150);
+            graphics.DrawLine(linePen, 800, 300, 916, 300);
+
+
             graphics.DrawRectangle(stift, vanInAction[0].Body);
             graphics.FillRectangle(Ausfüller, vanInAction[0].Window);
             graphics.FillEllipse(Ausfüller, 3, 30, 20, 20);
