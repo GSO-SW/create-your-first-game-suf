@@ -13,11 +13,11 @@ namespace TowerDefense_Test
         private Size vanSize, vanSizeTurned, vanDirection;
         private Rectangle vanBody;
         private Path path;
-        private float healthPointNow, healthPointMax;
+        private float healthPointNow, healthPointMax, childDamage;
         private int pathPart, angle;
         private bool finish;
 
-        public Van(Size size, Path path, Point startPoint, float healthPoint)
+        public Van(Size size, Path path, Point startPoint, float healthPoint, float childDamage)
         {
             vanSize = size;
             vanSizeTurned = new Size(size.Height, size.Width);
@@ -26,6 +26,7 @@ namespace TowerDefense_Test
             LocationMiddle = startPoint;
             healthPointMax = healthPoint;
             healthPointNow = healthPoint;
+            this.childDamage = childDamage;
             finish = false;
         }
 

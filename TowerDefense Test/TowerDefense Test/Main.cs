@@ -18,6 +18,7 @@ namespace TowerDefense_Test
         {
             InitializeComponent();
             Van.parentForm = this;
+            Resources.Live = 300f;
 
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -32,29 +33,15 @@ namespace TowerDefense_Test
             });
             //van = new Van[10];
             vanInAction = new Van[1];
-            vanInAction[0] = new Van(new Size(90, 50), path, path.StartPath, 10f);
+            vanInAction[0] = new Van(new Size(90, 50), path, path.StartPath, 10f, 150f);
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i <= vanInAction.Length - 1; i++)
+            foreach (Van van in vanInAction)
             {
-                if (vanInAction[i] != null)
-                {
-                    switch (vanInAction[i].Stage)
-                    {
-                        case -1:
-                            vanInAction[i] = null;
-                            break;
-                        case 0:
-                            vanInAction[i] = null;
-                            //Kinderleben abziehen
-                            break;
-                        case 1:
-                            vanInAction[i].Move();
-                            Invalidate();
-                            break;
-                    }
-                }
+                if (van != null) 
+                    van.Move();
+                Invalidate();
             }
         }
         protected override void OnPaint(PaintEventArgs e)
