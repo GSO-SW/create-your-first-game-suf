@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace TowerDefense_Test
 {
-    class Resources
+    static class Resources
     {
-        
+        static private float candy, live;
+
+        static public float Candy
+        {
+            get { return candy; }
+            set { candy = value; }
+        }
+
+        static public float Live
+        {
+            get { return live; }
+            set { live = value; }
+        }
     }
 }
