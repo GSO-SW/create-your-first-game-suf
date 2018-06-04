@@ -7,8 +7,9 @@ using System.Drawing;
 
 namespace TowerDefense_Test
 {
-    class Van
+    public class Van
     {
+        public static Main parentForm;
         private Size vanSize, vanSizeTurned, vanDirection;
         private Rectangle vanBody;
         private Path path;
@@ -27,56 +28,59 @@ namespace TowerDefense_Test
             healthPointNow = healthPoint;
             finish = false;
         }
+
         public Rectangle Body
         {
             get { return vanBody; }
         }
+
         public Point LocationMiddle
         {
             get { return Point.Add(vanBody.Location, SizeHalf); }
             set { vanBody.Location = Point.Subtract(value, SizeHalf); }
         }
-        public int Stage
-        {
-            get
-            {
-                if (healthPointNow < 0)
-                    return -1; //Tod
-                if (finish)
-                    return 0; //Ende
-                return 1; //Driving
-            }
-        }
+
         private Size SizeHalf
         {
             get { return new Size(vanBody.Width / 2, vanBody.Height / 2); }
         }
+
+        public float HealthPointNow
+        {
+            get { return healthPointNow; }
+            set
+            {
+                if (value <= 0)
+                    parentForm.delVan(this);
+                healthPointNow = value;
+            }
+        }
+
         public void Move()
         {
             if (LocationMiddle == path.PathPoints[pathPart] && !finish)
             {
-                if (LocationMiddle != path.EndPath && LocationMiddle != path.StartPath)
+                if (LocationMiddle != path.EndPath && LocationMiddle != path.StartPath) //Ecke
                 {
                     pathPart++;
                     vanDirection = GetDirection();
                 }
-                else if (LocationMiddle == path.StartPath)
+                else if (LocationMiddle == path.StartPath) //Start
                 {
                     pathPart = 1;
                     vanDirection = GetDirection();
                 }
-                else
+                else //Ende
                 {
-                    pathPart = 1;
-                    vanDirection = GetDirection();
-                    finish = true;
+                    HealthPointNow = 0;
                 }
             }
-            if (Stage == 1)
+            if (HealthPointNow > 0)
             {
                 LocationMiddle = Point.Add(LocationMiddle, vanDirection);
             }
         }
+
         private Size GetDirection()
         {
             Point p1 = path.PathPoints[pathPart - 1];
@@ -87,15 +91,17 @@ namespace TowerDefense_Test
             if (p.X < 0) { angle = 180; UpdateVan(vanSize); return new Size(-1, 0); }
             else { angle = 270; UpdateVan(vanSizeTurned); return new Size(0, -1); }
         }
+
         private void UpdateVan(Size vanSize)
         {
             Point p = LocationMiddle;
             vanBody.Size = vanSize;
             LocationMiddle = p;
         }
+
         public void Damage(float damage)
         {
-            healthPointNow = -damage;
+            HealthPointNow -= damage;
         }
     }
 }

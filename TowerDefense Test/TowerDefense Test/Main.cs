@@ -17,14 +17,18 @@ namespace TowerDefense_Test
         public Main()
         {
             InitializeComponent();
+            Van.parentForm = this;
+
             SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             path = new Path(new Point[]
             {
                 new Point(100, 100),
                 new Point(100, 300),
                 new Point(300, 300),
-                new Point(300, 100),
-                new Point(100, 100)
+                new Point(300, 100)
             });
             //van = new Van[10];
             vanInAction = new Van[1];
@@ -60,7 +64,18 @@ namespace TowerDefense_Test
             SolidBrush blackBrush = new SolidBrush(Color.Black);
             foreach (Van van in vanInAction)
             {
-                g.FillRectangle(blackBrush, van.Body);
+                if (van != null)
+                    g.FillRectangle(blackBrush, van.Body);
+            }
+            g.DrawLines(Pens.Black, path.PathPoints);
+        }
+
+        public void delVan(Van obj)
+        {
+            for (int i = 0; i < vanInAction.Length; i++)
+            {
+                if (vanInAction[i] == obj)
+                    vanInAction[i] = null;
             }
         }
     }
