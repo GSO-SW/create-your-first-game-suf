@@ -37,7 +37,6 @@
             this.VanKaputtbutton = new System.Windows.Forms.Button();
             this.minusChildrenButton = new System.Windows.Forms.Button();
             this.towerlabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.towerCountLabel = new System.Windows.Forms.Label();
             this.byTowerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -115,15 +114,6 @@
             this.towerlabel.TabIndex = 6;
             this.towerlabel.Text = "Tower";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "label1";
-            // 
             // towerCountLabel
             // 
             this.towerCountLabel.AutoSize = true;
@@ -151,7 +141,6 @@
             this.ClientSize = new System.Drawing.Size(900, 601);
             this.Controls.Add(this.byTowerButton);
             this.Controls.Add(this.towerCountLabel);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.towerlabel);
             this.Controls.Add(this.minusChildrenButton);
             this.Controls.Add(this.VanKaputtbutton);
@@ -178,7 +167,6 @@
         private System.Windows.Forms.Button VanKaputtbutton;
         private System.Windows.Forms.Button minusChildrenButton;
         private System.Windows.Forms.Label towerlabel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label towerCountLabel;
         private System.Windows.Forms.Button byTowerButton;
     }

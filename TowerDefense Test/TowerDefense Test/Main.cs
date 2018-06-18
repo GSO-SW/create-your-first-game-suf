@@ -14,13 +14,14 @@ namespace TowerDefense_Test
     {
         Path path;
         Van[] vanInAction;
-        
-        
-        
+        Form newForm;
+
+
         public Main()
         {
             Resources.IntLive = 50;
             Resources.IntCandy = 1000;
+
 
             InitializeComponent();
             Van.parentForm = this;
@@ -90,9 +91,14 @@ namespace TowerDefense_Test
 
         private void minusLebenButton_Click(object sender, EventArgs e)
         {
-            if(Resources.IntLive==0)
+            if(Resources.IntLive<=5)
             {
-                childrenShowLabel.Text = "Keine Leben mehr";
+                newForm = new GameOver();
+                newForm.Show(this);
+                Resources.IntLive = Resources.IntLive - 5;
+                Resources.StringLive = Convert.ToString(Resources.IntLive);
+                childrenShowLabel.Text = Resources.StringLive;
+
             }
 
 
