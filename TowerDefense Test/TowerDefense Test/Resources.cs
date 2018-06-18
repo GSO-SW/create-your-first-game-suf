@@ -6,20 +6,51 @@ using System.Threading.Tasks;
 
 namespace TowerDefense_Test
 {
-    static class Resources
+    class Resources
     {
-        static private float candy, live;
+        static private string stringCandy,stringLive,stringTower;
+        static private int intCandy,intLive,intTower;
+        
 
-        static public float Candy
+        public Resources(string candyShowLabel,string towerShowLabel,string towerCountLabel)
+        {         
+            stringCandy = candyShowLabel;
+            stringLive = towerShowLabel;
+            stringTower = towerCountLabel;
+        }
+        
+        static public string StringCandy
         {
-            get { return candy; }
-            set { candy = value; }
+            get { return stringCandy; }
+            set { stringCandy = value; }
+        }
+        static public int IntCandy
+        {
+            get { return intCandy; }
+            set { intCandy = value; }
         }
 
-        static public float Live
+
+        static public string StringLive
         {
-            get { return live; }
-            set { live = value; }
+            get { return stringLive; }
+            set { stringLive = value; }
+        }
+        static public int IntLive
+        {
+            get { return intLive; }
+            set { intLive = value; }
+        }
+
+        static public string StringTower
+        {
+            get { return stringTower; }
+            set { stringTower = value; }
+        }
+        static public int IntTower
+        {
+            get { return intTower; }
+            set { intTower = value; }
         }
     }
 }

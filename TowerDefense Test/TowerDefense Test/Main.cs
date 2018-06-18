@@ -14,11 +14,16 @@ namespace TowerDefense_Test
     {
         Path path;
         Van[] vanInAction;
+        
+        
+        
         public Main()
         {
+            Resources.IntLive = 50;
+            Resources.IntCandy = 1000;
+
             InitializeComponent();
             Van.parentForm = this;
-            Resources.Live = 300f;
 
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -63,6 +68,68 @@ namespace TowerDefense_Test
             {
                 if (vanInAction[i] == obj)
                     vanInAction[i] = null;
+            }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void candyShowLabel_Click(object sender, EventArgs e)
+        {            
+        }
+
+        private void VanKaputtbutton_Click(object sender, EventArgs e)
+        {
+            Resources.IntCandy = Resources.IntCandy + 500;
+            Resources.StringCandy = Convert.ToString(Resources.IntCandy);
+            candyShowLabel.Text = Resources.StringCandy ;
+
+        }
+
+        private void minusLebenButton_Click(object sender, EventArgs e)
+        {
+            if(Resources.IntLive==0)
+            {
+                childrenShowLabel.Text = "Keine Leben mehr";
+            }
+
+
+            else
+            {
+                Resources.IntLive = Resources.IntLive - 5;
+                Resources.StringLive = Convert.ToString(Resources.IntLive);
+                childrenShowLabel.Text = Resources.StringLive;
+            }                 
+
+        }
+
+        private void towerLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void towerCountLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void byTowerButton_Click(object sender, EventArgs e)
+        {
+            if (Resources.IntCandy <= 249)
+            {
+                towerCountLabel.Text = "du hast zu wenig Candy";
+            }
+            else
+            {
+                Resources.IntCandy = Resources.IntCandy - 250;
+                Resources.IntTower = Resources.IntTower + 1;
+                Resources.StringTower = Convert.ToString(Resources.IntTower);
+                towerCountLabel.Text = Resources.StringTower;
+                Resources.StringCandy = Convert.ToString(Resources.IntCandy);
+                candyShowLabel.Text = Resources.StringCandy;
+
             }
         }
     }
