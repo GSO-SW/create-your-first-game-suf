@@ -52,7 +52,7 @@ namespace TowerDefense_Test
             set
             {
                 if (value <= 0)
-                    parentForm.delVan(this);
+                    parentForm.delVan(this, finish);
                 healthPointNow = value;
             }
         }

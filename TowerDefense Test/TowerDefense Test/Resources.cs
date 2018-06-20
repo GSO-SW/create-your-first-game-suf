@@ -8,49 +8,17 @@ namespace TowerDefense_Test
 {
     class Resources
     {
-        static private string stringCandy,stringLive,stringTower;
-        static private int intCandy,intLive,intTower;
-        
+        static private float candyCounter, lifeCounter;
 
-        public Resources(string candyShowLabel,string towerShowLabel,string towerCountLabel)
-        {         
-            stringCandy = candyShowLabel;
-            stringLive = towerShowLabel;
-            stringTower = towerCountLabel;
-        }
-        
-        static public string StringCandy
+        static public float CandyCounter
         {
-            get { return stringCandy; }
-            set { stringCandy = value; }
+            get { return candyCounter; }
+            set { candyCounter = value; }
         }
-        static public int IntCandy
+        static public float LifeCounter
         {
-            get { return intCandy; }
-            set { intCandy = value; }
-        }
-
-
-        static public string StringLive
-        {
-            get { return stringLive; }
-            set { stringLive = value; }
-        }
-        static public int IntLive
-        {
-            get { return intLive; }
-            set { intLive = value; }
-        }
-
-        static public string StringTower
-        {
-            get { return stringTower; }
-            set { stringTower = value; }
-        }
-        static public int IntTower
-        {
-            get { return intTower; }
-            set { intTower = value; }
+            get { return lifeCounter; }
+            set { lifeCounter = value; }
         }
     }
 }

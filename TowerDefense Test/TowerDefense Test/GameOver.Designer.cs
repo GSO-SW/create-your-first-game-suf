@@ -35,18 +35,20 @@
             // 
             this.gameOverLabel.AutoSize = true;
             this.gameOverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gameOverLabel.Location = new System.Drawing.Point(27, 102);
+            this.gameOverLabel.Location = new System.Drawing.Point(11, 67);
+            this.gameOverLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gameOverLabel.Name = "gameOverLabel";
-            this.gameOverLabel.Size = new System.Drawing.Size(233, 46);
+            this.gameOverLabel.Size = new System.Drawing.Size(190, 37);
             this.gameOverLabel.TabIndex = 0;
             this.gameOverLabel.Text = "Game Over";
             // 
             // GameOver
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.ClientSize = new System.Drawing.Size(212, 207);
             this.Controls.Add(this.gameOverLabel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GameOver";
             this.Text = "GameOver";
             this.ResumeLayout(false);

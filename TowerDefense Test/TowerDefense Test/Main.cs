@@ -19,10 +19,6 @@ namespace TowerDefense_Test
 
         public Main()
         {
-            Resources.IntLive = 50;
-            Resources.IntCandy = 1000;
-
-
             InitializeComponent();
             Van.parentForm = this;
 
@@ -45,7 +41,7 @@ namespace TowerDefense_Test
         {
             foreach (Van van in vanInAction)
             {
-                if (van != null) 
+                if (van != null)
                     van.Move();
                 Invalidate();
             }
@@ -63,80 +59,26 @@ namespace TowerDefense_Test
             g.DrawLines(Pens.Black, path.PathPoints);
         }
 
-        public void delVan(Van obj)
+        public void delVan(Van obj, bool end)
         {
             for (int i = 0; i < vanInAction.Length; i++)
             {
                 if (vanInAction[i] == obj)
+                {
+                    //Van gelöscht
                     vanInAction[i] = null;
+                    if (end)
+                        Resources.LifeCounter -= 500;
+                    else
+                        Resources.CandyCounter += 500;
+                    updateCounterLabel();
+                }
             }
         }
-
-        private void Main_Load(object sender, EventArgs e)
+        private void updateCounterLabel()
         {
-
-        }
-
-        private void candyShowLabel_Click(object sender, EventArgs e)
-        {            
-        }
-
-        private void VanKaputtbutton_Click(object sender, EventArgs e)
-        {
-            Resources.IntCandy = Resources.IntCandy + 500;
-            Resources.StringCandy = Convert.ToString(Resources.IntCandy);
-            candyShowLabel.Text = Resources.StringCandy ;
-
-        }
-
-        private void minusLebenButton_Click(object sender, EventArgs e)
-        {
-            if(Resources.IntLive<=5)
-            {
-                newForm = new GameOver();
-                newForm.Show(this);
-                Resources.IntLive = Resources.IntLive - 5;
-                Resources.StringLive = Convert.ToString(Resources.IntLive);
-                childrenShowLabel.Text = Resources.StringLive;
-
-            }
-
-
-            else
-            {
-                Resources.IntLive = Resources.IntLive - 5;
-                Resources.StringLive = Convert.ToString(Resources.IntLive);
-                childrenShowLabel.Text = Resources.StringLive;
-            }                 
-
-        }
-
-        private void towerLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void towerCountLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void byTowerButton_Click(object sender, EventArgs e)
-        {
-            if (Resources.IntCandy <= 249)
-            {
-                towerCountLabel.Text = "du hast zu wenig Candy";
-            }
-            else
-            {
-                Resources.IntCandy = Resources.IntCandy - 250;
-                Resources.IntTower = Resources.IntTower + 1;
-                Resources.StringTower = Convert.ToString(Resources.IntTower);
-                towerCountLabel.Text = Resources.StringTower;
-                Resources.StringCandy = Convert.ToString(Resources.IntCandy);
-                candyShowLabel.Text = Resources.StringCandy;
-
-            }
+            candyCounterLabel.Text = Resources.CandyCounter.ToString();
+            healthPointCounterLabel.Text = Resources.LifeCounter.ToString();
         }
     }
 }

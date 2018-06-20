@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.candyLabel = new System.Windows.Forms.Label();
-            this.candyShowLabel = new System.Windows.Forms.Label();
-            this.childrenLabel = new System.Windows.Forms.Label();
-            this.childrenShowLabel = new System.Windows.Forms.Label();
+            this.candyCounterLabel = new System.Windows.Forms.Label();
+            this.healthPointLabel = new System.Windows.Forms.Label();
+            this.healthPointCounterLabel = new System.Windows.Forms.Label();
             this.VanKaputtbutton = new System.Windows.Forms.Button();
             this.minusChildrenButton = new System.Windows.Forms.Button();
             this.towerlabel = new System.Windows.Forms.Label();
@@ -50,108 +50,109 @@
             // candyLabel
             // 
             this.candyLabel.AutoSize = true;
-            this.candyLabel.Location = new System.Drawing.Point(735, 61);
+            this.candyLabel.Location = new System.Drawing.Point(551, 50);
+            this.candyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.candyLabel.Name = "candyLabel";
-            this.candyLabel.Size = new System.Drawing.Size(48, 17);
+            this.candyLabel.Size = new System.Drawing.Size(37, 13);
             this.candyLabel.TabIndex = 0;
             this.candyLabel.Text = "Candy";
             // 
-            // candyShowLabel
+            // candyCounterLabel
             // 
-            this.candyShowLabel.AutoSize = true;
-            this.candyShowLabel.Location = new System.Drawing.Point(735, 88);
-            this.candyShowLabel.Name = "candyShowLabel";
-            this.candyShowLabel.Size = new System.Drawing.Size(40, 17);
-            this.candyShowLabel.TabIndex = 1;
-            this.candyShowLabel.Text = "1000";
-            this.candyShowLabel.Click += new System.EventHandler(this.candyShowLabel_Click);
+            this.candyCounterLabel.AutoSize = true;
+            this.candyCounterLabel.Location = new System.Drawing.Point(551, 72);
+            this.candyCounterLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.candyCounterLabel.Name = "candyCounterLabel";
+            this.candyCounterLabel.Size = new System.Drawing.Size(31, 13);
+            this.candyCounterLabel.TabIndex = 1;
+            this.candyCounterLabel.Text = "1000";
             // 
-            // childrenLabel
+            // healthPointLabel
             // 
-            this.childrenLabel.AutoSize = true;
-            this.childrenLabel.Location = new System.Drawing.Point(735, 226);
-            this.childrenLabel.Name = "childrenLabel";
-            this.childrenLabel.Size = new System.Drawing.Size(49, 17);
-            this.childrenLabel.TabIndex = 2;
-            this.childrenLabel.Text = "Kinder";
-            this.childrenLabel.Click += new System.EventHandler(this.towerLabel_Click);
+            this.healthPointLabel.AutoSize = true;
+            this.healthPointLabel.Location = new System.Drawing.Point(551, 184);
+            this.healthPointLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.healthPointLabel.Name = "healthPointLabel";
+            this.healthPointLabel.Size = new System.Drawing.Size(37, 13);
+            this.healthPointLabel.TabIndex = 2;
+            this.healthPointLabel.Text = "Kinder";
             // 
-            // childrenShowLabel
+            // healthPointCounterLabel
             // 
-            this.childrenShowLabel.AutoSize = true;
-            this.childrenShowLabel.Location = new System.Drawing.Point(735, 261);
-            this.childrenShowLabel.Name = "childrenShowLabel";
-            this.childrenShowLabel.Size = new System.Drawing.Size(24, 17);
-            this.childrenShowLabel.TabIndex = 3;
-            this.childrenShowLabel.Text = "50";
+            this.healthPointCounterLabel.AutoSize = true;
+            this.healthPointCounterLabel.Location = new System.Drawing.Point(551, 197);
+            this.healthPointCounterLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.healthPointCounterLabel.Name = "healthPointCounterLabel";
+            this.healthPointCounterLabel.Size = new System.Drawing.Size(19, 13);
+            this.healthPointCounterLabel.TabIndex = 3;
+            this.healthPointCounterLabel.Text = "50";
             // 
             // VanKaputtbutton
             // 
-            this.VanKaputtbutton.Location = new System.Drawing.Point(738, 108);
+            this.VanKaputtbutton.Location = new System.Drawing.Point(554, 88);
+            this.VanKaputtbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VanKaputtbutton.Name = "VanKaputtbutton";
-            this.VanKaputtbutton.Size = new System.Drawing.Size(92, 42);
+            this.VanKaputtbutton.Size = new System.Drawing.Size(69, 34);
             this.VanKaputtbutton.TabIndex = 4;
             this.VanKaputtbutton.Text = "VanKaputtbutton";
             this.VanKaputtbutton.UseVisualStyleBackColor = true;
-            this.VanKaputtbutton.Click += new System.EventHandler(this.VanKaputtbutton_Click);
             // 
             // minusChildrenButton
             // 
-            this.minusChildrenButton.Location = new System.Drawing.Point(738, 281);
+            this.minusChildrenButton.Location = new System.Drawing.Point(554, 228);
+            this.minusChildrenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.minusChildrenButton.Name = "minusChildrenButton";
-            this.minusChildrenButton.Size = new System.Drawing.Size(92, 37);
+            this.minusChildrenButton.Size = new System.Drawing.Size(69, 30);
             this.minusChildrenButton.TabIndex = 5;
             this.minusChildrenButton.Text = "-Kinder";
             this.minusChildrenButton.UseVisualStyleBackColor = true;
-            this.minusChildrenButton.Click += new System.EventHandler(this.minusLebenButton_Click);
             // 
             // towerlabel
             // 
             this.towerlabel.AutoSize = true;
-            this.towerlabel.Location = new System.Drawing.Point(738, 424);
+            this.towerlabel.Location = new System.Drawing.Point(554, 344);
+            this.towerlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.towerlabel.Name = "towerlabel";
-            this.towerlabel.Size = new System.Drawing.Size(47, 17);
+            this.towerlabel.Size = new System.Drawing.Size(37, 13);
             this.towerlabel.TabIndex = 6;
             this.towerlabel.Text = "Tower";
             // 
             // towerCountLabel
             // 
             this.towerCountLabel.AutoSize = true;
-            this.towerCountLabel.Location = new System.Drawing.Point(735, 452);
+            this.towerCountLabel.Location = new System.Drawing.Point(551, 367);
+            this.towerCountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.towerCountLabel.Name = "towerCountLabel";
-            this.towerCountLabel.Size = new System.Drawing.Size(16, 17);
+            this.towerCountLabel.Size = new System.Drawing.Size(13, 13);
             this.towerCountLabel.TabIndex = 8;
             this.towerCountLabel.Text = "0";
-            this.towerCountLabel.Click += new System.EventHandler(this.towerCountLabel_Click);
             // 
             // byTowerButton
             // 
-            this.byTowerButton.Location = new System.Drawing.Point(738, 487);
+            this.byTowerButton.Location = new System.Drawing.Point(554, 396);
+            this.byTowerButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.byTowerButton.Name = "byTowerButton";
-            this.byTowerButton.Size = new System.Drawing.Size(75, 23);
+            this.byTowerButton.Size = new System.Drawing.Size(56, 19);
             this.byTowerButton.TabIndex = 9;
             this.byTowerButton.Text = "Tower";
             this.byTowerButton.UseVisualStyleBackColor = true;
-            this.byTowerButton.Click += new System.EventHandler(this.byTowerButton_Click);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 601);
+            this.ClientSize = new System.Drawing.Size(675, 488);
             this.Controls.Add(this.byTowerButton);
             this.Controls.Add(this.towerCountLabel);
             this.Controls.Add(this.towerlabel);
             this.Controls.Add(this.minusChildrenButton);
             this.Controls.Add(this.VanKaputtbutton);
-            this.Controls.Add(this.childrenShowLabel);
-            this.Controls.Add(this.childrenLabel);
-            this.Controls.Add(this.candyShowLabel);
+            this.Controls.Add(this.healthPointCounterLabel);
+            this.Controls.Add(this.healthPointLabel);
+            this.Controls.Add(this.candyCounterLabel);
             this.Controls.Add(this.candyLabel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Main";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,9 +162,9 @@
 
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label candyLabel;
-        private System.Windows.Forms.Label candyShowLabel;
-        private System.Windows.Forms.Label childrenLabel;
-        private System.Windows.Forms.Label childrenShowLabel;
+        private System.Windows.Forms.Label candyCounterLabel;
+        private System.Windows.Forms.Label healthPointLabel;
+        private System.Windows.Forms.Label healthPointCounterLabel;
         private System.Windows.Forms.Button VanKaputtbutton;
         private System.Windows.Forms.Button minusChildrenButton;
         private System.Windows.Forms.Label towerlabel;
