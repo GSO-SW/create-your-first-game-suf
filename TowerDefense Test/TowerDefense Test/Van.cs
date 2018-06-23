@@ -9,27 +9,22 @@ namespace TowerDefense_Test
 {
     public class Van
     {
-        public static Main parentForm;
         private Size vanSize, vanSizeTurned, vanDirection;
         private Rectangle vanBody;
-        private Path path;
         private float healthPointNow, healthPointMax, childDamage;
-        private int pathPart, angle;
-        private bool finish;
+        private int targetPathNumber, stepCounter;
 
-        public Van(Size size, Path path, Point startPoint, float healthPoint, float childDamage)
+        public Van(Size size, Point startPoint, float healthPoint, float childDamage)
         {
             vanSize = size;
             vanSizeTurned = new Size(size.Height, size.Width);
             vanBody.Size = vanSize;
-            this.path = path;
             LocationMiddle = startPoint;
             healthPointMax = healthPoint;
             healthPointNow = healthPoint;
             this.childDamage = childDamage;
-            finish = false;
+            stepCounter = 0;
         }
-
         public Rectangle Body
         {
             get { return vanBody; }
@@ -46,60 +41,43 @@ namespace TowerDefense_Test
             get { return new Size(vanBody.Width / 2, vanBody.Height / 2); }
         }
 
+        public Size Direction
+        {
+            get { return vanDirection; }
+            set { vanDirection = value; }
+        }
+
+        public int TargetPointNumber
+        {
+            get { return targetPathNumber; }
+            set { targetPathNumber = value; }
+        }
+
+        public int StepCounter
+        {
+            get { return stepCounter; }
+            set { stepCounter = value; }
+        }
+
         public float HealthPointNow
         {
             get { return healthPointNow; }
-            set
-            {
-                if (value <= 0)
-                    parentForm.delVan(this, finish);
-                healthPointNow = value;
-            }
+            set { healthPointNow = value; }
         }
-
-        public void Move()
+        public int HealthPercent
         {
-            if (LocationMiddle == path.PathPoints[pathPart] && !finish)
-            {
-                if (LocationMiddle != path.EndPath && LocationMiddle != path.StartPath) //Ecke
-                {
-                    pathPart++;
-                    vanDirection = GetDirection();
-                }
-                else if (LocationMiddle == path.StartPath) //Start
-                {
-                    pathPart = 1;
-                    vanDirection = GetDirection();
-                }
-                else //Ende
-                {
-                    HealthPointNow = 0;
-                }
-            }
-            if (HealthPointNow > 0)
-            {
-                LocationMiddle = Point.Add(LocationMiddle, vanDirection);
-            }
+            get { return Convert.ToInt32(HealthPointNow / healthPointMax * 100); }
         }
 
-        private Size GetDirection()
-        {
-            Point p1 = path.PathPoints[pathPart - 1];
-            Point p2 = path.PathPoints[pathPart];
-            Point p = new Point(p2.X - p1.X, p2.Y - p1.Y);
-            if (p.X > 0) { angle = 0; UpdateVan(vanSize); return new Size(1, 0); }
-            if (p.Y > 0) { angle = 90; UpdateVan(vanSizeTurned); return new Size(0, 1); }
-            if (p.X < 0) { angle = 180; UpdateVan(vanSize); return new Size(-1, 0); }
-            else { angle = 270; UpdateVan(vanSizeTurned); return new Size(0, -1); }
-        }
-
-        private void UpdateVan(Size vanSize)
+        public void UpdateVan(bool turned)
         {
             Point p = LocationMiddle;
-            vanBody.Size = vanSize;
+            if (turned)
+                vanBody.Size = vanSizeTurned;
+            else
+                vanBody.Size = vanSize;
             LocationMiddle = p;
         }
-
         public void Damage(float damage)
         {
             HealthPointNow -= damage;
