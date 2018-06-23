@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameOver.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameOver.Designer.cs">
-      <DependentUpon>GameOver.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,9 +59,6 @@
     <Compile Include="Tower.cs" />
     <Compile Include="Van.cs" />
     <Compile Include="Path.cs" />
-    <EmbeddedResource Include="GameOver.resx">
-      <DependentUpon>GameOver.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
