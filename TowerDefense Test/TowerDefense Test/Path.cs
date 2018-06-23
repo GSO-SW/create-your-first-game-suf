@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TowerDefense_Test
 {
-    class Path
+    public class Path
     {
         private Point[] pathPoints;
         public Path(Point[] pathPoints)
