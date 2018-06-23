@@ -88,7 +88,7 @@ namespace TowerDefense_Test
             {
                 
                 g.FillRectangle(Ausfüller, van.Body);
-                g.FillRectangle(Text, van.WindowBox);
+                //g.FillRectangle(Text, van.WindowBox);
                 g.FillPolygon(Ausfüller, van.WindowTriangle);
                 g.FillEllipse(Ausfüller, van.Wheel1);
                 g.DrawEllipse(stift2, van.Wheel1);
