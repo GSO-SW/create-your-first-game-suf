@@ -13,6 +13,7 @@ namespace TowerDefense_Test
     public partial class Main : Form
     {
         Path path;
+        Van[] van;
         Van[] vanInAction;
         Tower[] towerInAction;
         Bitmap b = new Bitmap(@"C:\Users\René\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\test.bmp");
