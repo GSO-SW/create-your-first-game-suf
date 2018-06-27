@@ -47,8 +47,7 @@ namespace TowerDefense_Test
 			});
 			//van = new Van[10];
 			vanInAction = new Van[0];
-			towerInAction = new Tower[1];
-			towerInAction[0] = new Tower(new Rectangle(0, 0, 0, 0), 1, 1, 1);
+			towerInAction = new Tower[0];
 			//Tower building places
 			TowerBuildingPlace = new Rectangle[5];
 			TowerBuildingPlace[0] = new Rectangle(200, 175, 100, 100);
@@ -78,6 +77,7 @@ namespace TowerDefense_Test
 			}
 			foreach (Tower tower in towerInAction)
 			{
+				g.DrawRectangle(new Pen(Color.Red), tower.Body);
 				if (tower.Target != null)
 					g.DrawLine(Pens.ForestGreen, tower.Location, tower.Target.LocationMiddle);
 			}
@@ -93,7 +93,7 @@ namespace TowerDefense_Test
 
 			g.DrawRectangle(new Pen(Color.Black), new Rectangle(725, -1, 500, 200));
 			g.DrawString("Laser-\nTower\n50 Candy", new Font("Arial", 16), new SolidBrush(Color.Black), 790, 70);
-			g.DrawRectangle(new Pen(Color.Red), towerInAction[0].Body);
+
 
 		}
 
@@ -215,7 +215,7 @@ namespace TowerDefense_Test
 		{
 			label1.Text = "Candy: " + Resources.CandyCounter.ToString();
 			label2.Text = "Health: " + Resources.LifeCounter.ToString();
-			if (towerInAction[0].Target != null)
+			if (towerInAction.Length > 0 && towerInAction[0].Target != null)
 				label3.Text = "Tower0TargetPercent: " + towerInAction[0].Target.HealthPercent + "%";
 			else
 				label3.Text = "Tower0TargetPercent: null";
@@ -235,6 +235,8 @@ namespace TowerDefense_Test
 
 				if (TowerBuildingPlace[i].Contains(e.Location) && Selected)
 				{
+					Array.Resize(ref towerInAction, towerInAction.Length + 1);
+					towerInAction[towerInAction.Length - 1] = new Tower(new Rectangle(TowerBuildingPlace[i].X -50, TowerBuildingPlace[i].Y -50, TowerBuildingPlace[i].Width +100, TowerBuildingPlace[i].Height +100), 1, 1, 1);
 					TowerBuildingPlace[i] = Rectangle.Empty;
 					for (int j = i + 1; j < TowerBuildingPlace.Length; j++)
 					{
@@ -242,6 +244,8 @@ namespace TowerDefense_Test
 					}
 
 					Array.Resize(ref TowerBuildingPlace, TowerBuildingPlace.Length - 1);
+					Resources.CandyCounter -= 50;
+					updateCounterLabel();
 
 				}
 
