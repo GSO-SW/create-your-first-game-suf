@@ -18,7 +18,7 @@ namespace TowerDefense_Test
 		Rectangle[] TowerBuildingPlace;
 		Rectangle[] TowerShop;
 		Tower[] towerInAction;
-		Bitmap b = new Bitmap(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\test.bmp");
+		//Bitmap b = new Bitmap(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\test.bmp");
 		bool Selected;
 
 		public Main()
@@ -29,6 +29,9 @@ namespace TowerDefense_Test
 			SetStyle(ControlStyles.UserPaint, true);
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 			SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            Resources.CandyCounter = 50;
+            Resources.LifeCounter = 500;
 
 			path = new Path(new Point[]
 			{
@@ -250,7 +253,7 @@ namespace TowerDefense_Test
 				}
 
 			}
-			if (TowerShop[0].Contains(e.Location))
+			if (TowerShop[0].Contains(e.Location) && Resources.CandyCounter >= 50)
 			{
 				Selected = true;
 				Cursor = Cursors.Help;
