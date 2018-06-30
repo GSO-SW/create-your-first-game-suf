@@ -81,7 +81,7 @@ namespace TowerDefense_Test
 			foreach (Tower tower in towerInAction)
 			{
 				g.DrawRectangle(new Pen(Color.Red), tower.Body);
-				if (tower.Target != null)
+				if (tower.Target != null) 
 					g.DrawLine(Pens.ForestGreen, tower.Location, tower.Target.LocationMiddle);
 			}
 
@@ -108,6 +108,7 @@ namespace TowerDefense_Test
 			}
 			foreach (Tower tower in towerInAction)
 			{
+                tower.Reload();
 				if (tower.Target == null) //Target null
 				{
 					towerSearchNewTarget(tower);
@@ -120,8 +121,8 @@ namespace TowerDefense_Test
 						towerSearchNewTarget(tower);
 					}
 				}
-				if (tower.Target != null)
-					tower.Target.Damage(tower.Damage);
+				if (tower.Target != null && tower.Timer == 0)
+					tower.Target.Damage(tower.ShotDamage());
 			}
 			updateCounterLabel();
 			Invalidate();
@@ -239,7 +240,7 @@ namespace TowerDefense_Test
 				if (TowerBuildingPlace[i].Contains(e.Location) && Selected)
 				{
 					Array.Resize(ref towerInAction, towerInAction.Length + 1);
-					towerInAction[towerInAction.Length - 1] = new Tower(new Rectangle(TowerBuildingPlace[i].X -50, TowerBuildingPlace[i].Y -50, TowerBuildingPlace[i].Width +100, TowerBuildingPlace[i].Height +100), 1, 1, 1);
+					towerInAction[towerInAction.Length - 1] = new Tower(new Rectangle(TowerBuildingPlace[i].X -50, TowerBuildingPlace[i].Y -50, TowerBuildingPlace[i].Width +100, TowerBuildingPlace[i].Height +100), 100, 50, 1);
 					TowerBuildingPlace[i] = Rectangle.Empty;
 					for (int j = i + 1; j < TowerBuildingPlace.Length; j++)
 					{
