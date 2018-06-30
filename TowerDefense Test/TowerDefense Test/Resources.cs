@@ -9,7 +9,7 @@ namespace TowerDefense_Test
     class Resources
     {
         static private float candyCounter, lifeCounter;
-        static private int spawnVan, waveCount;
+        static private int spawnVan, waveCount, ticksPerVan;
 
         static public float CandyCounter
         {
@@ -31,6 +31,12 @@ namespace TowerDefense_Test
         {
             get { return waveCount; }
             set { waveCount = value; }
+        }
+
+        static public int TicksPerVan
+        {
+            get { return ticksPerVan; }
+            set { ticksPerVan = value; }
         }
     }
 }
