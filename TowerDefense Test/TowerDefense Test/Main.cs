@@ -66,10 +66,10 @@ namespace TowerDefense_Test
 			//Tower building places
 			TowerBuildingPlace = new Rectangle[5];
 			TowerBuildingPlace[0] = new Rectangle(200, 175, 100, 100);
-			TowerBuildingPlace[1] = new Rectangle(200, 450, 100, 100);
-			TowerBuildingPlace[2] = new Rectangle(560, 450, 100, 100);
-			TowerBuildingPlace[3] = new Rectangle(950, 450, 100, 100);
-			TowerBuildingPlace[4] = new Rectangle(560, 155, 100, 100);
+			TowerBuildingPlace[1] = new Rectangle(200, 475, 100, 100);
+			TowerBuildingPlace[2] = new Rectangle(550, 475, 100, 100);
+			TowerBuildingPlace[3] = new Rectangle(950, 425, 100, 100);
+			TowerBuildingPlace[4] = new Rectangle(550, 125, 100, 100);
 			//Tower menu
 			TowerShop = new Rectangle[1];
 			TowerShop[0] = new Rectangle(775, 50, 100, 100);
