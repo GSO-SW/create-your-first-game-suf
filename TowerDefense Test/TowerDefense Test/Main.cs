@@ -21,12 +21,12 @@ namespace TowerDefense_Test
 		Rectangle[] TowerShop;
 		Tower[] towerInAction;
 		//Bitmap b = new Bitmap(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\test.bmp");
-		Bitmap strasseGerade = new Bitmap(Image.FromFile(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\Straße_Gerade.bmp"), 50, 50);
-		Bitmap strasseGeradeQuer = new Bitmap(Image.FromFile(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
-		Bitmap strasseKurveOR = new Bitmap(Image.FromFile(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\Straße_Kurve_OR.bmp"), 50, 50);
-		Bitmap strasseKurveRU = new Bitmap(Image.FromFile(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\Straße_Kurve_RU.bmp"), 50, 50);
-		Bitmap strasseKurveUL = new Bitmap(Image.FromFile(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\Straße_Kurve_UL.bmp"), 50, 50);
-		Bitmap strasseKurveLO = new Bitmap(Image.FromFile(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\Straße_Kurve_LO.bmp"), 50, 50);
+		Bitmap strasseGerade = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade.bmp"), 50, 50);
+		Bitmap strasseGeradeQuer = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
+		Bitmap strasseKurveOR = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_OR.bmp"), 50, 50);
+		Bitmap strasseKurveRU = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_RU.bmp"), 50, 50);
+		Bitmap strasseKurveUL = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_UL.bmp"), 50, 50);
+		Bitmap strasseKurveLO = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_LO.bmp"), 50, 50);
 		bool Selected, startSpawn;
 		int i;
 
