@@ -5,15 +5,17 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace TowerDefense_Test
 {
 	public partial class Main : Form
 	{
 		Path path;
-		Van[] van;
+        Van[] van;
 		Van[] vanInAction;
 		Rectangle[] TowerBuildingPlace;
 		Rectangle[] TowerShop;
@@ -30,6 +32,8 @@ namespace TowerDefense_Test
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 			SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
+            Resources.SpawnVan = 5;
+            Resources.WaveCount = 0;
             Resources.CandyCounter = 50;
             Resources.LifeCounter = 500;
 
@@ -226,8 +230,8 @@ namespace TowerDefense_Test
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			addVan(new Size(50, 20), path.StartPath, 100f, 150f);
-		}
+            addVan(new Size(50, 20), path.StartPath, 100f, 150f);
+        }
 
 		private void Main_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -266,5 +270,18 @@ namespace TowerDefense_Test
 
 		}
 
-	}
+        private void startWaveButton_Click(object sender, EventArgs e)
+        {
+            
+            Resources.SpawnVan *= 2;
+            int i;
+            for (i = 0; i < Resources.SpawnVan; i++)
+            {
+                addVan(new Size(50, 20), path.StartPath, 100f, 150f);
+               
+            }
+            Resources.WaveCount++;
+            waveCountLabel.Text ="Wave:"+ Resources.WaveCount.ToString();
+        }
+    }
 }
