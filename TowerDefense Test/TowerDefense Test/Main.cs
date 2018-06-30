@@ -28,6 +28,7 @@ namespace TowerDefense_Test
 		Bitmap strasseKurveUL = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_UL.bmp"), 50, 50);
 		Bitmap strasseKurveLO = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_LO.bmp"), 50, 50);
 		Bitmap strasseKreuzung = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kreuzung.bmp"), 50, 50);
+		Bitmap towerBuildingPlaceImage = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\TowerBuildingPlace.bmp"), 100, 100);
 		bool Selected, startSpawn;
 		int i;
 
@@ -134,6 +135,11 @@ namespace TowerDefense_Test
 			g.DrawImage(strasseKurveLO, path.PathPoints[8].X - 25, path.PathPoints[8].Y - 25);
 			g.DrawImage(strasseKurveRU, path.PathPoints[9].X - 25, path.PathPoints[9].Y - 25);
 			g.DrawImage(strasseKreuzung, path.PathPoints[7].X - 25, path.PathPoints[4].Y - 25);
+			foreach (Rectangle item in TowerBuildingPlace)
+			{
+				g.DrawImage(towerBuildingPlaceImage, item);
+			}
+
 			foreach (Van van in vanInAction)
 			{
 				//g.DrawImage(b, van.Body.Location);
@@ -150,7 +156,7 @@ namespace TowerDefense_Test
 
 			foreach (Rectangle item in TowerBuildingPlace)
 			{
-				g.DrawRectangle(new Pen(Color.Black), item);
+				g.DrawRectangle(new Pen(Color.Transparent), item);
 			}
 			foreach (Rectangle item in TowerShop)
 			{
@@ -158,6 +164,7 @@ namespace TowerDefense_Test
 			}
 			g.DrawRectangle(new Pen(Color.Black), new Rectangle(725, -1, 500, 200));
 			g.DrawString("Laser-\nTower\n50 Candy", new Font("Arial", 16), new SolidBrush(Color.Black), 790, 70);
+
 
 
 		}

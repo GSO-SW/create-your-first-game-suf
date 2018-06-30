@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
@@ -104,7 +105,7 @@
 			// startWaveButton
 			// 
 			this.startWaveButton.Location = new System.Drawing.Point(12, 133);
-			this.startWaveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.startWaveButton.Margin = new System.Windows.Forms.Padding(2);
 			this.startWaveButton.Name = "startWaveButton";
 			this.startWaveButton.Size = new System.Drawing.Size(56, 19);
 			this.startWaveButton.TabIndex = 15;
@@ -126,6 +127,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.ClientSize = new System.Drawing.Size(1184, 675);
 			this.Controls.Add(this.waveCountLabel);
 			this.Controls.Add(this.startWaveButton);
