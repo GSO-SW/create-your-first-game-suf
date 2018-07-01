@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TowerDefense_Test
 {
-    class Tower
+    class Tower//Towerklasse
     {
         private float damage, cost;
         private int timer, ticksPerShot, flagBuilding;
@@ -93,7 +93,7 @@ namespace TowerDefense_Test
             set { cost = value; }
         }
    
-        public void Reload()
+        public void Reload()//Tower macht eine kurze Pause
         {
             if(timer != 0)
             {
@@ -101,7 +101,7 @@ namespace TowerDefense_Test
             }
         }
 
-        public float ShotDamage()
+        public float ShotDamage()//Schaden an den Vans
         {
             if (timer != 0)
                 throw new Exception();

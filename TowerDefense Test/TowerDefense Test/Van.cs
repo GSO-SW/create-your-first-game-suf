@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TowerDefense_Test
 {
-    public class Van
+    public class Van//Vanklasse
     {
         private Size vanSize, vanSizeTurned, vanDirection;
         private Rectangle vanBody;

@@ -7,14 +7,15 @@ using System.Drawing;
 
 namespace TowerDefense_Test
 {
-    public class Path
+    public class Path //Wegklasse
     {
-        private Point[] pathPoints;
+        private Point[] pathPoints;//Punktearray
         public Path(Point[] pathPoints)
         {
             this.pathPoints = pathPoints;
         }
-        public Point[] PathPoints {
+        public Point[] PathPoints
+        {
             get { return pathPoints; }
         }
         public Point StartPath

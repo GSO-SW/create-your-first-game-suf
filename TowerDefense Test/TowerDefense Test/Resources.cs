@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TowerDefense_Test
 {
-    class Resources
+    class Resources//Ressourcenklasse
     {
-        static private float candyCounter, lifeCounter;
+        static private float candyCounter, lifeCounter;//Candy- und Lebenscounter
         static private int spawnVan, waveCount, ticksPerVan;
 
         static public float CandyCounter

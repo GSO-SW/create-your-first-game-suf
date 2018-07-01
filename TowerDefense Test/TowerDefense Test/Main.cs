@@ -14,16 +14,20 @@ namespace TowerDefense_Test
 {
     public partial class Main : Form
     {
-        Path path;
-        Van[] vanInAction;
-        Rectangle towerShop, startRec, hitboxRec;
-        Rectangle[] towerBuildingPlace, towerShopItemRec;
-        Tower selectedTower;
-        Tower[] towerShopItem, towerPlaced;
-        Bitmap strasseGerade, strasseGeradeQuer, strasseKurveOR, strasseKurveRU, strasseKurveUL, strasseKurveLO, strasseKreuzung, towerBuildingPlaceImage, towerPoison, towerInferno;
-        bool startSpawn, showHitbox;
-        int waveCounter;
+        Path path;//Weg
+        Van[] vanInAction;//Vanarray
+        Rectangle towerShop, startRec, hitboxRec;//Rechteck
+        Rectangle[] towerBuildingPlace, towerShopItemRec;//Rechteckarray
+        Tower selectedTower;//ausgewählter Tower
+        Tower[] towerShopItem, towerPlaced;//Towerarray
+        Bitmap strasseGerade, strasseGeradeQuer, strasseKurveOR, strasseKurveRU, strasseKurveUL, strasseKurveLO, strasseKreuzung, towerBuildingPlaceImage, towerPoison, towerInferno;//Bilddateien
+        bool startSpawn, showHitbox;//bool fürs Vans spawnen und der Hitbox für die Tower
+        int waveCounter;//Wellen zähler
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
         public Main()
         {
             InitializeComponent();
@@ -34,11 +38,12 @@ namespace TowerDefense_Test
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            Resources.SpawnVan = 50;
-            Resources.TicksPerVan = 100;
-            Resources.CandyCounter = 50;
-            Resources.LifeCounter = 10;
+            Resources.SpawnVan = 50;//50 Vans sollen gespawnt werden
+            Resources.TicksPerVan = 100;//ein Van soll alle 100 Ticks gespawnt werden
+            Resources.CandyCounter = 50;//50 Startcandy
+            Resources.LifeCounter = 10;//10 Leben
 
+            //Bilder aus dem Ordner laden
             strasseGerade = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade.bmp"), 50, 50);
             strasseGeradeQuer = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
             strasseKurveOR = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_OR.bmp"), 50, 50);
@@ -50,7 +55,7 @@ namespace TowerDefense_Test
 			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
             towerInferno = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Inferno.bmp"), 200, 200);
 
-            path = new Path(new Point[]
+            path = new Path(new Point[]//Wegpunkte
             {
                 new Point(150, -50),
                 new Point(150, 625),
@@ -66,7 +71,7 @@ namespace TowerDefense_Test
 
             });
 
-            towerBuildingPlace = new Rectangle[]
+            towerBuildingPlace = new Rectangle[]//Positionen der Tower
             {
                 new Rectangle(200, 175, 100, 100),
                 new Rectangle(200, 450, 100, 100),
@@ -75,31 +80,32 @@ namespace TowerDefense_Test
                 new Rectangle(550, 125, 100, 100)
             };
 
-            towerShopItemRec = new Rectangle[]
+            towerShopItemRec = new Rectangle[]//Position des Shops
             {
                 new Rectangle(775, 50, 100, 100),
                 new Rectangle(925, 50, 100, 100)
             };
 
-            towerShopItem = new Tower[]
+            towerShopItem = new Tower[]//Position der Kaufmöglichkeiten
             {
                 new Tower("La001", Point.Empty, 150, 20, 20, 50, 0),
                 new Tower("La002", Point.Empty, 200, 300, 200, 100, 0)
             };
 
-            vanInAction = new Van[0];
-            towerPlaced = new Tower[0];
+            vanInAction = new Van[0];//Arry wird auf 0 gesezt 
+            towerPlaced = new Tower[0];//Arry wird auf 0 gesetzt 
 
-            towerShop = new Rectangle(725, -1, 500, 200);
-            startRec = new Rectangle(5, 5, 100, 40);
-            hitboxRec = new Rectangle(0, Size.Height - 70, 32, 32);
+            towerShop = new Rectangle(725, -1, 500, 200);//Shop wird gezeichnet
+            startRec = new Rectangle(5, 5, 100, 40);//Startrechteck wird gezeichnet
+            hitboxRec = new Rectangle(0, Size.Height - 70, 32, 32);//Hitbox wird gezeichnet
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            
             base.OnPaint(e);
             Graphics g = e.Graphics;
-
+            //Weg wird gezeichnet
             for (int i = path.PathPoints[0].Y; i < path.PathPoints[1].Y; i += 50)
             {
                 g.DrawImage(strasseGerade, path.PathPoints[1].X - 25, i);
@@ -140,7 +146,6 @@ namespace TowerDefense_Test
             {
                 g.DrawImage(strasseGeradeQuer, i, path.PathPoints[10].Y - 25);
             }
-
             g.DrawImage(strasseKurveOR, path.PathPoints[1].X - 25, path.PathPoints[1].Y - 25);
             g.DrawImage(strasseKurveLO, path.PathPoints[2].X - 25, path.PathPoints[2].Y - 25);
             g.DrawImage(strasseKurveRU, path.PathPoints[3].X - 25, path.PathPoints[3].Y - 25);
@@ -183,13 +188,16 @@ namespace TowerDefense_Test
 
             foreach (Van van in vanInAction)
             {
+                //Farbe der Vans
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
                 g.DrawRectangle(new Pen(Color.Black), van.Body);
             }
+            //Farbänderung
 			g.DrawRectangle(new Pen(Color.Black), towerShop);
 			g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
-			g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
-			if (!startSpawn)
+            g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace); 
+
+            if (!startSpawn)
 				g.DrawString("Start", new Font("Arial", 26, FontStyle.Bold), Brushes.Black, startRec);
 			g.DrawString("  Laser-\n  Tower\n" + towerShopItem[0].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 780, 68);
 			g.DrawString("   Boom-\n   Tower\n" + towerShopItem[1].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 925, 68);
@@ -253,33 +261,33 @@ namespace TowerDefense_Test
 
         private void gameTick(object sender, EventArgs e)
         {
-            foreach (Van van in vanInAction)
+            foreach (Van van in vanInAction)//Van wird bewegt
             {
                 moveVan(van);
             }
-            foreach (Tower tower in towerPlaced)
+            foreach (Tower tower in towerPlaced)//Laser der Tower
             {
                 tower.Reload();
-                if (tower.Target == null) //Target null
+                if (tower.Target == null) //kein Target 
                 {
-                    towerSearchNewTarget(tower);
+                    towerSearchNewTarget(tower);//sucht ein neues Traget
                 }
                 else
                 {
                     if (!tower.Body.IntersectsWith(tower.Target.Body) || tower.Target.HealthPointNow <= 0) //Target wegefahren
                     {
                         tower.Target = null;
-                        towerSearchNewTarget(tower);
+                        towerSearchNewTarget(tower);//sucht ein neues Traget
                     }
                 }
                 if (tower.Target != null && tower.Timer == 0)
-                    tower.Target.Damage(tower.ShotDamage());
+                    tower.Target.Damage(tower.ShotDamage());//Schaden an den Vans
             }
-            waveTimer();
-            Invalidate();
+            waveTimer();//Wellentimer
+            Invalidate();//Steuerelement wird neu gezeichnet
         }
 
-        public string pathCutter(string path, int cut)
+        public string pathCutter(string path, int cut)//Teilt den Weg 
         {
             string[] ss = path.Split('\\');
             string s = "";
@@ -290,35 +298,35 @@ namespace TowerDefense_Test
             return s;
         }
 
-        private void addVan(Size size, Point startPoint, float healthPoint, float childDamage)
+        private void addVan(Size size, Point startPoint, float healthPoint, float childDamage)//Van wird erstellt
         {
-            Array.Resize(ref vanInAction, vanInAction.Length + 1);
-            vanInAction[vanInAction.Length - 1] = new Van(size, startPoint, healthPoint, childDamage);
+            Array.Resize(ref vanInAction, vanInAction.Length + 1);//Arry wird pro Van um 1 erweitert
+            vanInAction[vanInAction.Length - 1] = new Van(size, startPoint, healthPoint, childDamage);//Array wird zurückgesetzt 
         }
 
-        private void delVan(Van obj, bool end)
+        private void delVan(Van obj, bool end)//Van ist kaputt
         {
             for (int i = 0; i < vanInAction.Length; i++)
             {
                 if (vanInAction[i] == obj)
                 {
-                    //Van gelöscht
+                    //Van wird gelöscht
                     vanInAction[i] = null;
                     for (int j = i + 1; j < vanInAction.Length; j++)
                     {
                         vanInAction[j - 1] = vanInAction[j];
                     }
-                    Array.Resize(ref vanInAction, vanInAction.Length - 1);
+                    Array.Resize(ref vanInAction, vanInAction.Length - 1);//Vanarry wird um 1 verringert
                     if (end)
-                        Resources.LifeCounter -= 1;
+                        Resources.LifeCounter -= 1;//Wenn der Van im Ziel ist wird 1 Leben abgezogen
                     else
-                        Resources.CandyCounter += 10;
+                        Resources.CandyCounter += 10;//Wenn der Van kaputt geht bekommt man Candy
                     break;
                 }
             }
         }
 
-        private void moveVan(Van obj)
+        private void moveVan(Van obj)//
         {
             if (obj.LocationMiddle == path.PathPoints[obj.TargetPointNumber])
             {
@@ -346,7 +354,7 @@ namespace TowerDefense_Test
                 delVan(obj, false);
         }
 
-        private Size dirVan(Van obj)
+        private Size dirVan(Van obj)//Van wird in Fahrtrichung gedreht
         {
             Point p1 = path.PathPoints[obj.TargetPointNumber - 1];
             Point p2 = path.PathPoints[obj.TargetPointNumber];
@@ -357,22 +365,22 @@ namespace TowerDefense_Test
             else { obj.UpdateVan(true); return new Size(0, -1); }
         }
 
-        private Color getVanColor(int vanPercentHP)
+        private Color getVanColor(int vanPercentHP)//Farbe der Vans
         {
             double red = 0.0;
             double green = 0.0;
-            if (vanPercentHP >= 66)
+            if (vanPercentHP >= 66)//Grün bei vollem Leben
             {
                 green = 255.0;
                 red = (100 - vanPercentHP) * (255 / 34);
             }
-            else if (vanPercentHP >= 33)
+            else if (vanPercentHP >= 33)//Grün und Rot bei der Hälfte 
             {
                 vanPercentHP -= 33;
                 green = vanPercentHP * (255 / 34);
                 red = 255.0;
             }
-            else
+            else//Rot wenn Van fast kein Leben mehr hat
             {
                 green = 0;
                 red = vanPercentHP * (255 / 34);
@@ -380,13 +388,13 @@ namespace TowerDefense_Test
             return Color.FromArgb((int)red, (int)green, 0);
         }
 
-        private void addTower(string type, Point location, int range, float damage, int ticksPerShot, float cost, int i)
+        private void addTower(string type, Point location, int range, float damage, int ticksPerShot, float cost, int i)//Tower wird erstellt
         {
-            Array.Resize(ref towerPlaced, towerPlaced.Length + 1);
-            towerPlaced[towerPlaced.Length - 1] = new Tower(type, location, range, damage, ticksPerShot, cost, i);
+            Array.Resize(ref towerPlaced, towerPlaced.Length + 1);//Array wird um 1 erweitert
+            towerPlaced[towerPlaced.Length - 1] = new Tower(type, location, range, damage, ticksPerShot, cost, i);//Array wird zurückgesetzt 
         }
 
-        private void towerSearchNewTarget(Tower t)
+        private void towerSearchNewTarget(Tower t)//Tower sucht ein Target
         {
             foreach (Van van in vanInAction)
             {
@@ -402,17 +410,17 @@ namespace TowerDefense_Test
             }
         }
 
-        private void waveTimer()
+        private void waveTimer()//Wellentimer
         {
             if (!startSpawn)
                 return;
-            if (waveCounter == 0 && Resources.SpawnVan > 0)
+            if (waveCounter == 0 && Resources.SpawnVan > 0)//Spawne so lange Vans bis "SpawnVan" bei 0 ist
             {
-                addVan(new Size(50, 20), path.StartPath, 200f, 150f);
-                Resources.SpawnVan--;
+                addVan(new Size(50, 20), path.StartPath, 200f, 150f);//Van wird erstellt
+                Resources.SpawnVan--;//SpawnVan wird um 1 verringert
                 waveCounter = Resources.TicksPerVan;
             }
-            if (Resources.SpawnVan == 0)
+            if (Resources.SpawnVan == 0)//Wenn "SpawnVan" 0 ist, ist die Welle geschaft  
             {
                 Resources.WaveCount++;
             }
