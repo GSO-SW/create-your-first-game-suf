@@ -31,6 +31,7 @@ namespace TowerDefense_Test
         Bitmap strasseKreuzung;
         Bitmap towerBuildingPlaceImage;
 		Bitmap towerPoison;
+		Bitmap towerInferno;
 		bool startSpawn;
         int waveCounter, shotCounter;
 
@@ -45,6 +46,7 @@ namespace TowerDefense_Test
             strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
             towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
 			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
+			towerInferno = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Inferno.bmp"), 200, 200);
 
 			InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer, true);
@@ -169,18 +171,28 @@ namespace TowerDefense_Test
             }
             foreach (Tower tower in towerPlaced)
             {
-				Color backColor = towerPoison.GetPixel(1, 1);
-				towerPoison.MakeTransparent(backColor);
-				g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
                 if (checkBox1.Checked)
                     g.DrawRectangle(new Pen(Color.Red), tower.Body);
                 if (tower.Target != null)
                 {
-                    g.DrawLine(new Pen(Color.DarkGoldenrod, 1f), tower.Location, tower.Target.LocationMiddle);
+                    g.DrawLine(new Pen(Color.LimeGreen, 1f), tower.Location, tower.Target.LocationMiddle);
                     if (tower.Timer < 10)
-                        g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 100 + 10), tower.Location, tower.Target.LocationMiddle);
+                        g.DrawLine(new Pen(Color.LimeGreen, tower.Damage / 100 + 10), tower.Location, tower.Target.LocationMiddle);
                 }
-            }
+				if(tower == towerShopItem[0])
+				{
+					Color backColorPoison = towerPoison.GetPixel(1, 1);
+					towerPoison.MakeTransparent(backColorPoison);
+					g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
+				}
+				if(tower == towerShopItem[1])
+				{
+					Color backColorInferno = towerPoison.GetPixel(1, 1);
+					towerPoison.MakeTransparent(backColorInferno);
+					g.DrawImage(towerInferno, tower.Location.X - 100, tower.Location.Y - 100);
+				}
+
+			}
             foreach (Van van in vanInAction)
             {
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
