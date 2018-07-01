@@ -58,7 +58,7 @@ namespace TowerDefense_Test
 
             path = new Path(new Point[]
             {
-                new Point(150, -25),
+                new Point(150, -50),
                 new Point(150, 625),
                 new Point(350, 625),
                 new Point(350, 375),
@@ -387,42 +387,12 @@ namespace TowerDefense_Test
                         Resources.CandyCounter -= selectedTower.Cost;
                         Rectangle r = towerBuildingPlace[i];
                         addTower(new Point(r.Left + r.Width / 2, r.Top + r.Height / 2), selectedTower.Range, selectedTower.Damage, selectedTower.TicksPerShot, selectedTower.Cost, i);
+                        towerBuildingPlace[i] = Rectangle.Empty;
                     }
                 }
                 selectedTower = null;
                 Cursor = Cursors.Default;
             }
-
-            //for (int i = 0; i < towerBuildingPlace.Length; i++)
-            //{
-
-            //    if (towerBuildingPlace[i].Contains(e.Location) && Selected)
-            //    {
-            //        Array.Resize(ref towerInAction, towerInAction.Length + 1);
-            //        //towerInAction[towerInAction.Length - 1] = new Tower(new Rectangle(towerBuildingPlace[i].X - 50, towerBuildingPlace[i].Y - 50, towerBuildingPlace[i].Width + 100, towerBuildingPlace[i].Height + 100), 1, 1, 1);
-            //        towerBuildingPlace[i] = Rectangle.Empty;
-            //        for (int j = i + 1; j < towerBuildingPlace.Length; j++)
-            //        {
-            //            towerBuildingPlace[j - 1] = towerBuildingPlace[j];
-            //        }
-            //        Array.Resize(ref towerBuildingPlace, towerBuildingPlace.Length - 1);
-            //        Resources.CandyCounter -= 50;
-            //        updateCounterLabel();
-
-            //    }
-
-            //}
-            //if (towerShopItemRec[0].Contains(e.Location) && Resources.CandyCounter >= 50)
-            //{
-            //    Selected = true;
-            //    Cursor = Cursors.Help;
-            //}
-            //else if (ClientRectangle.Contains(e.Location))
-            //{
-            //    Selected = false;
-            //    Cursor = Cursors.Default;
-            //}
-
         }
 
         private void startWaveButton_Click(object sender, EventArgs e)
@@ -458,4 +428,3 @@ namespace TowerDefense_Test
         }
     }
 }
-//new Tower(new Rectangle(towerBuildingPlace[i].X - 50, towerBuildingPlace[i].Y - 50, towerBuildingPlace[i].Width + 100, towerBuildingPlace[i].Height + 100), 1, 1, 1);
