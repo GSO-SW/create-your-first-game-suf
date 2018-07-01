@@ -1,0 +1,94 @@
+﻿Anforderungen:
+	
+	Titel:
+		Weg hinzufügen
+	Beschreibung:
+		Die Wegpunkte sollen einen Weg ergeben.
+	Akzeptanzkriterien:
+		Letzten Punkt ausgeben lassen.
+		Erster Punkt ausgeben lassen.
+		Den Array der Punkte zurück geben lassen.
+	Bedinung:
+		Die Strecke zwischen 2 Punkten unterscheiden sich nur auf einer Ebene. (x oder y)
+
+	Titel:
+		Van erkennt Eckpunkte
+	Beschreibung:
+		Die Vans erkennen, dass sie sich auf einem Eckpunkt befinden.
+	Akzeptanzkriterien:
+		Durch eine Abfrage immer abfragen, ob die Van Middle Location gleich den Eckpunkten eines Pfades ist.
+
+	Titel:
+		Van erkennen neue Richtung
+	Beschreibung:
+		Die Vans ermitteln anhand des Pfades die neue Richtung, sollten sie dich auf einem Eckpunkt befinden.
+	Akzeptanzkriterien:
+		Wenn die Vans auf einem Eckpunkt sind, erkennen sie dich richtige Richtung.
+
+	Titel:
+		Resources in einer eigenen Klasse
+	Beschreibung:
+		Die Werte des Spielstandes sollen in einer eigenen Klasse sein
+	Akzeptanzkriterien:
+		Candy, Lebenscounter, etc. static class
+
+	Titel:
+		Vans sterben bzw werden entfernt
+	Beschreibung:
+		Sobald ein Van das Ziel erreicht oder keine Leben mehr hat, so wird er gelöscht
+	Akzeptanzkriterien:
+		Wenn ein Van das Ziel erreicht, wird der SpielerHP verringert
+		Wenn ein Van vor dem Ziel keine Leben mehr hat, so wird der Spieler belohnt.
+
+	Titel:
+		Tower schießen Vans an
+	Beschreibung:
+		Sobald sich ein Van im Radius von einem Tower befindet, so wird er als Target des Towers genommen.
+	Akzeptanzkriterien:
+		Hat der Tower kein Target, so nimmt er den Van mit dem höhsten StepCounter
+		Sollte der Van nicht mehr in Reichweite des Tower sein, so such er sich einen neuen
+		Sollte der Tower schießen, so muss er warten bis der Cooldown des Schusses wieder bei 0 ist.
+
+	Titel:
+		Tower plazieren
+	Beschreibung:
+		Man kann über ein Shopmenü ein Tower Item auswählen und setzt diesen auf ein Sell Schild.
+		An dieser Stelle wird ein Tower erstellt.
+	Akzeptanzkriterien:
+		Man kann ein Item auswählen, wenn man genug Candys für diesen hat.
+		Sollte man ein Item ausgewählt haben und klickt auf ein Sell Schild, verschwindet das Sellschild und ein Tower wird an der Positione erstellt.
+		Sollte man ein Item ausgewählt haben und klickt irgendwo anders rum, so wird die Auswahl gelöscht
+
+	Titel:
+		Van spawnen
+	Beschreibung:
+		Durch das klicken auf den Start Text wird die Welle von Vans gestartet
+	Akzeptanzkriterien:
+		
+	Titel:
+		Spielende
+	Beschreibung:
+		Das Spiel ist erst dann vorbei, wenn der Spieler keine Leben mehr hat
+	Akzeptanzkriterien:
+		Das Spiel endet dann, wenn Lifecounter <= 0 ist
+
+Zusatzanforderungen
+
+	Titel:
+		Upgrade der Türme		
+	Beschreibung:
+		Durch das Klicken auf einen Turm kann man diesen verstärken.
+		Das gelingt nur, wenn man genug Candys besitzt.
+	Akzeptanzkriterien:
+		Wenn man auf die Türme klickt, kann man diese Upgraden.
+		Sollte man keine Candys haben, so blobt eine Fehlermeldung auf.
+
+	Titel:
+		Level
+	Beschreibung:
+		Das Programm kann aus txt Dateien die verschieden Level laden
+	Akzeptanzkriterien:
+		Stats, Levelaufbei, Vanstärke und Menge wird aus einer Txt Datei ausgelesen
+
+
+		
