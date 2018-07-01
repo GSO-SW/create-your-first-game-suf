@@ -23,20 +23,29 @@ namespace TowerDefense_Test
         Tower selectedTower;
         Tower[] towerShopItem;
         Tower[] towerInAction;
-        Bitmap strasseGerade = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade.bmp"), 50, 50);
-        Bitmap strasseGeradeQuer = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
-        Bitmap strasseKurveOR = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_OR.bmp"), 50, 50);
-        Bitmap strasseKurveRU = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_RU.bmp"), 50, 50);
-        Bitmap strasseKurveUL = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_UL.bmp"), 50, 50);
-        Bitmap strasseKurveLO = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_LO.bmp"), 50, 50);
-        Bitmap strasseKreuzung = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kreuzung.bmp"), 50, 50);
-        Bitmap towerBuildingPlaceImage = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\TowerBuildingPlace.bmp"), 100, 100);
-        bool startSpawn;
+		Bitmap strasseGerade;
+		Bitmap strasseGeradeQuer;
+		Bitmap strasseKurveOR;
+		Bitmap strasseKurveRU;
+		Bitmap strasseKurveUL;
+		Bitmap strasseKurveLO;
+		Bitmap strasseKreuzung;
+		Bitmap towerBuildingPlaceImage;
+		bool startSpawn;
         int i;
 
         public Main()
         {
-            InitializeComponent();
+			strasseGerade = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade.bmp"), 50, 50);
+			strasseGeradeQuer = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
+			strasseKurveOR = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_OR.bmp"), 50, 50);
+			strasseKurveRU = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_RU.bmp"), 50, 50);
+			strasseKurveUL = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_UL.bmp"), 50, 50);
+			strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
+			strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
+			towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
+
+			InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
