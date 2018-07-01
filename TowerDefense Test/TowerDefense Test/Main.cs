@@ -38,7 +38,7 @@ namespace TowerDefense_Test
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            Resources.SpawnVan = 50;//50 Vans sollen gespawnt werden
+            Resources.SpawnVan = 1;//50 Vans sollen gespawnt werden
             Resources.TicksPerVan = 100;//ein Van soll alle 100 Ticks gespawnt werden
             Resources.CandyCounter = 50;//50 Startcandy
             Resources.LifeCounter = 10;//10 Leben
@@ -203,6 +203,18 @@ namespace TowerDefense_Test
 			g.DrawString("   Boom-\n   Tower\n" + towerShopItem[1].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 925, 68);
 			g.DrawString(Resources.LifeCounter + " Leben", new Font("Arial", 18, FontStyle.Bold), new SolidBrush(Color.Black), 3, 60);
 			g.DrawString(Resources.CandyCounter + " Candy", new Font("Arial", 18, FontStyle.Bold), new SolidBrush(Color.Black), 3, 80);
+
+            if (Resources.SpawnVan == 0 && vanInAction.Length == 0)//Wenn alle Vans kaputt sind hat man gewonnen
+            {
+                g.DrawString("!!!Gewonnen!!!",new Font("XX",50,FontStyle.Bold),new SolidBrush(Color.Red),500,320);
+                //Application.Exit();
+            }
+            if(Resources.LifeCounter<=0)//Wenn man kein Leben mehr hat hat man verloren
+            {
+                g.DrawString("!!!Game Over!!!", new Font("XX", 50, FontStyle.Bold), new SolidBrush(Color.Red), 500, 320);
+                //Application.Exit();
+            }
+
 		}
         
         private void Main_MouseDown(object sender, MouseEventArgs e)
@@ -423,6 +435,7 @@ namespace TowerDefense_Test
             if (Resources.SpawnVan == 0)//Wenn "SpawnVan" 0 ist, ist die Welle geschaft  
             {
                 Resources.WaveCount++;
+                
             }
             if (waveCounter >= 0)
             {
