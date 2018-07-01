@@ -30,7 +30,8 @@ namespace TowerDefense_Test
         Bitmap strasseKurveLO;
         Bitmap strasseKreuzung;
         Bitmap towerBuildingPlaceImage;
-        bool startSpawn;
+		Bitmap towerPoison;
+		bool startSpawn;
         int waveCounter, shotCounter;
 
         public Main()
@@ -43,8 +44,9 @@ namespace TowerDefense_Test
             strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
             strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
             towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
+			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
 
-            InitializeComponent();
+			InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -167,6 +169,9 @@ namespace TowerDefense_Test
             }
             foreach (Tower tower in towerPlaced)
             {
+				Color backColor = towerPoison.GetPixel(1, 1);
+				towerPoison.MakeTransparent(backColor);
+				g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
                 if (checkBox1.Checked)
                     g.DrawRectangle(new Pen(Color.Red), tower.Body);
                 if (tower.Target != null && tower.Timer < 10)
