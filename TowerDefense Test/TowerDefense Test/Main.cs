@@ -15,14 +15,13 @@ namespace TowerDefense_Test
     public partial class Main : Form
     {
         Path path;
-        Van[] van;
         Van[] vanInAction;
         Rectangle[] towerBuildingPlace;
         Rectangle[] towerShopItemRec;
         Rectangle towerShop, startRec;
         Tower selectedTower;
         Tower[] towerShopItem;
-        Tower[] towerInAction;
+        Tower[] towerPlaced;
         Bitmap strasseGerade;
         Bitmap strasseGeradeQuer;
         Bitmap strasseKurveOR;
@@ -32,7 +31,7 @@ namespace TowerDefense_Test
         Bitmap strasseKreuzung;
         Bitmap towerBuildingPlaceImage;
         bool startSpawn;
-        int waveCounter;
+        int waveCounter, shotCounter;
 
         public Main()
         {
@@ -74,7 +73,7 @@ namespace TowerDefense_Test
             });
             //van = new Van[10];
             vanInAction = new Van[0];
-            towerInAction = new Tower[0];
+            towerPlaced = new Tower[0];
             //Tower building places
             towerBuildingPlace = new Rectangle[5];
             towerBuildingPlace[0] = new Rectangle(200, 175, 100, 100);
@@ -86,9 +85,9 @@ namespace TowerDefense_Test
             towerShopItemRec = new Rectangle[2];
             towerShopItem = new Tower[towerShopItemRec.Length];
             towerShopItemRec[0] = new Rectangle(775, 50, 100, 100);
-            towerShopItem[0] = new Tower(Point.Empty, 150, 5, 5, 50, 0);
+            towerShopItem[0] = new Tower(Point.Empty, 150, 20, 20, 50, 0);
             towerShopItemRec[1] = new Rectangle(925, 50, 100, 100);
-            towerShopItem[1] = new Tower(Point.Empty, 200, 500, 200, 100, 0);
+            towerShopItem[1] = new Tower(Point.Empty, 200, 300, 200, 100, 0);
             towerShop = new Rectangle(725, -1, 500, 200);
             //Start
             startRec = new Rectangle(5, 5, 100, 40);
@@ -166,20 +165,18 @@ namespace TowerDefense_Test
             {
                 g.DrawImage(towerBuildingPlaceImage, item);
             }
-            foreach (Tower tower in towerInAction)
+            foreach (Tower tower in towerPlaced)
             {
                 if (checkBox1.Checked)
                     g.DrawRectangle(new Pen(Color.Red), tower.Body);
-                if (tower.Target != null )
-                    g.DrawLine(Pens.ForestGreen, tower.Location, tower.Target.LocationMiddle);
+                if (tower.Target != null && tower.Timer < 10)
+                    g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 50 + 10), tower.Location, tower.Target.LocationMiddle);
             }
             foreach (Van van in vanInAction)
             {
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
                 g.DrawRectangle(new Pen(Color.Black), van.Body);
-
             }
-
             g.DrawRectangle(new Pen(Color.Black), towerShop);
             g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
             g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
@@ -195,7 +192,7 @@ namespace TowerDefense_Test
             {
                 moveVan(van);
             }
-            foreach (Tower tower in towerInAction)
+            foreach (Tower tower in towerPlaced)
             {
                 tower.Reload();
                 if (tower.Target == null) //Target null
@@ -313,8 +310,8 @@ namespace TowerDefense_Test
 
         private void addTower(Point location, int range, float damage, int ticksPerShot, float cost, int i)
         {
-            Array.Resize(ref towerInAction, towerInAction.Length + 1);
-            towerInAction[towerInAction.Length - 1] = new Tower(location, range, damage, ticksPerShot, cost, i);
+            Array.Resize(ref towerPlaced, towerPlaced.Length + 1);
+            towerPlaced[towerPlaced.Length - 1] = new Tower(location, range, damage, ticksPerShot, cost, i);
         }
 
         private void towerSearchNewTarget(Tower t)
@@ -374,9 +371,9 @@ namespace TowerDefense_Test
             {
                 for (int i = 0; i < towerBuildingPlace.Length; i++)
                 {
-                    if (towerBuildingPlace[i].Contains(p) && towerInAction.Length < towerBuildingPlace.Length)
+                    if (towerBuildingPlace[i].Contains(p) && towerPlaced.Length < towerBuildingPlace.Length)
                     {
-                        foreach (Tower item in towerInAction)
+                        foreach (Tower item in towerPlaced)
                         {
                             if (item.Flag == i)
                             {
