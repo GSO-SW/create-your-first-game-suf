@@ -20,7 +20,7 @@ namespace TowerDefense_Test
 		Rectangle[] TowerBuildingPlace;
 		Rectangle[] TowerShop;
 		Tower[] towerInAction;
-		//Bitmap b = new Bitmap(@"C:\Users\Marco\Source\Repos\create-your-first-game-suf\TowerDefense Test\TowerDefense Test\bitmap\test.bmp");
+		//Bitmap monster = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Sunny.bmp"), 20, 50);
 		Bitmap strasseGerade = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade.bmp"), 50, 50);
 		Bitmap strasseGeradeQuer = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
 		Bitmap strasseKurveOR = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_OR.bmp"), 50, 50);
@@ -142,9 +142,9 @@ namespace TowerDefense_Test
 
 			foreach (Van van in vanInAction)
 			{
-				//g.DrawImage(b, van.Body.Location);
 				g.FillRectangle(new SolidBrush(Color.LimeGreen), van.Body);
 				g.DrawRectangle(new Pen(Color.Black), van.Body);
+				//g.DrawImage(monster, van.Body.Location);
 
 			}
 			foreach (Tower tower in towerInAction)
