@@ -32,6 +32,7 @@ namespace TowerDefense_Test
         Bitmap towerBuildingPlaceImage;
 		Bitmap towerPoison;
 		Bitmap towerInferno;
+		Bitmap poisonPreis;
 		bool startSpawn, showHitbox;
         int waveCounter;
 
@@ -45,6 +46,7 @@ namespace TowerDefense_Test
             strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
             strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
             towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
+			poisonPreis = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Poison_Preis.bmp"), 100, 100);
 			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
 			towerInferno = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Inferno.bmp"), 200, 200);
 
