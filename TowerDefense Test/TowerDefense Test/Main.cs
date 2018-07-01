@@ -18,7 +18,7 @@ namespace TowerDefense_Test
         Van[] vanInAction;
         Rectangle[] towerBuildingPlace;
         Rectangle[] towerShopItemRec;
-        Rectangle towerShop, startRec;
+        Rectangle towerShop, startRec, hitboxRec;
         Tower selectedTower;
         Tower[] towerShopItem;
         Tower[] towerPlaced;
@@ -31,8 +31,8 @@ namespace TowerDefense_Test
         Bitmap strasseKreuzung;
         Bitmap towerBuildingPlaceImage;
 		Bitmap towerPoison;
-		bool startSpawn;
-        int waveCounter, shotCounter;
+		bool startSpawn, showHitbox;
+        int waveCounter;
 
         public Main()
         {
@@ -47,6 +47,7 @@ namespace TowerDefense_Test
 			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
 
 			InitializeComponent();
+
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -93,6 +94,7 @@ namespace TowerDefense_Test
             towerShop = new Rectangle(725, -1, 500, 200);
             //Start
             startRec = new Rectangle(5, 5, 100, 40);
+            hitboxRec = new Rectangle(0 , Size.Height - 70, 32, 32);
         }
 
         public string pathCutter(string path, int cut)
@@ -171,8 +173,7 @@ namespace TowerDefense_Test
             {
 				Color backColor = towerPoison.GetPixel(1, 1);
 				towerPoison.MakeTransparent(backColor);
-				g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
-                if (checkBox1.Checked)
+                if (showHitbox)
                     g.DrawRectangle(new Pen(Color.Red), tower.Body);
                 if (tower.Target != null)
                 {
@@ -180,6 +181,7 @@ namespace TowerDefense_Test
                     if (tower.Timer < 10)
                         g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 100 + 10), tower.Location, tower.Target.LocationMiddle);
                 }
+                g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
             }
             foreach (Van van in vanInAction)
             {
@@ -373,6 +375,8 @@ namespace TowerDefense_Test
                 {
                     if (startRec.Contains(p))
                         startSpawn = true;
+                    if (hitboxRec.Contains(p))
+                        showHitbox = !showHitbox;
                     //UPGRADE
                 }
             }
