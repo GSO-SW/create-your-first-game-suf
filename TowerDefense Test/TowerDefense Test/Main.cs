@@ -44,7 +44,7 @@ namespace TowerDefense_Test
 
             Resources.SpawnVan = 50;
             Resources.TicksPerVan = 100;
-            Resources.CandyCounter = 500;
+            Resources.CandyCounter = 50;
             Resources.LifeCounter = 500;
 
             path = new Path(new Point[]
@@ -78,7 +78,7 @@ namespace TowerDefense_Test
             towerShopItemRec[0] = new Rectangle(775, 50, 100, 100);
             towerShopItem[0] = new Tower(Point.Empty, 150, 5, 5, 50, 0);
             towerShopItemRec[1] = new Rectangle(925, 50, 100, 100);
-            towerShopItem[1] = new Tower(Point.Empty, 200, 1000, 5, 50, 0);
+            towerShopItem[1] = new Tower(Point.Empty, 200, 500, 1000, 100, 0);
             towerShop = new Rectangle(725, -1, 500, 200);
             Selected = false;
         }
@@ -340,7 +340,7 @@ namespace TowerDefense_Test
                             if (Resources.CandyCounter >= towerShopItem[i].Cost)
                             {
                                 selectedTower = towerShopItem[i];
-                                Cursor = Cursors.WaitCursor;
+                                Cursor = Cursors.Help;
                             }
                         }
                     }
