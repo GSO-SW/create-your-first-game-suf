@@ -88,9 +88,9 @@ namespace TowerDefense_Test
             towerShopItemRec = new Rectangle[2];
             towerShopItem = new Tower[towerShopItemRec.Length];
             towerShopItemRec[0] = new Rectangle(775, 50, 100, 100);
-            towerShopItem[0] = new Tower(Point.Empty, 150, 20, 20, 50, 0);
+            towerShopItem[0] = new Tower("La001", Point.Empty, 150, 20, 20, 50, 0);
             towerShopItemRec[1] = new Rectangle(925, 50, 100, 100);
-            towerShopItem[1] = new Tower(Point.Empty, 200, 300, 200, 100, 0);
+            towerShopItem[1] = new Tower("La002", Point.Empty, 200, 300, 200, 100, 0);
             towerShop = new Rectangle(725, -1, 500, 200);
             //Start
             startRec = new Rectangle(5, 5, 100, 40);
@@ -319,10 +319,10 @@ namespace TowerDefense_Test
             return Color.FromArgb((int)red, (int)green, 0);
         }
 
-        private void addTower(Point location, int range, float damage, int ticksPerShot, float cost, int i)
+        private void addTower(string type, Point location, int range, float damage, int ticksPerShot, float cost, int i)
         {
             Array.Resize(ref towerPlaced, towerPlaced.Length + 1);
-            towerPlaced[towerPlaced.Length - 1] = new Tower(location, range, damage, ticksPerShot, cost, i);
+            towerPlaced[towerPlaced.Length - 1] = new Tower(type, location, range, damage, ticksPerShot, cost, i);
         }
 
         private void towerSearchNewTarget(Tower t)
@@ -397,7 +397,7 @@ namespace TowerDefense_Test
                         }
                         Resources.CandyCounter -= selectedTower.Cost;
                         Rectangle r = towerBuildingPlace[i];
-                        addTower(new Point(r.Left + r.Width / 2, r.Top + r.Height / 2), selectedTower.Range, selectedTower.Damage, selectedTower.TicksPerShot, selectedTower.Cost, i);
+                        addTower(selectedTower.Type, new Point(r.Left + r.Width / 2, r.Top + r.Height / 2), selectedTower.Range, selectedTower.Damage, selectedTower.TicksPerShot, selectedTower.Cost, i);
                         towerBuildingPlace[i] = Rectangle.Empty;
                     }
                 }

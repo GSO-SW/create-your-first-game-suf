@@ -13,9 +13,11 @@ namespace TowerDefense_Test
         private int timer, ticksPerShot, flagBuilding;
         private Rectangle hitbox;
         private Van target;
+        private string type;
 
-        public Tower(Point location, int range, float damage, int ticksPerShot, float cost, int flagBuilding)
+        public Tower(string type, Point location, int range, float damage, int ticksPerShot, float cost, int flagBuilding)
         {
+            this.type = type;
             this.hitbox = new Rectangle(location.X - range, location.Y - range, range * 2, range * 2);
             this.damage = damage;
             this.ticksPerShot = ticksPerShot;
@@ -27,6 +29,11 @@ namespace TowerDefense_Test
         {
             get { return hitbox; }
             set { hitbox = value; }
+        }
+
+        public String Type
+        {
+            get { return type; }
         }
 
         public Van Target
