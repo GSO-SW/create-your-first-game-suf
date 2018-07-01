@@ -25,6 +25,7 @@ namespace TowerDefense_Test
             this.childDamage = childDamage;
             stepCounter = 0;
         }
+
         public Rectangle Body
         {
             get { return vanBody; }
@@ -66,7 +67,12 @@ namespace TowerDefense_Test
         }
         public int HealthPercent
         {
-            get { return Convert.ToInt32(HealthPointNow / healthPointMax * 100); }
+            get
+            {
+                if (HealthPointNow <= 0)
+                    return 0;
+                return Convert.ToInt32(HealthPointNow / healthPointMax * 100);
+            }
         }
 
         public void UpdateVan(bool turned)

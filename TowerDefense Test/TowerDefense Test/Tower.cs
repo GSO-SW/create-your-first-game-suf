@@ -10,17 +10,19 @@ namespace TowerDefense_Test
     class Tower
     {
         private float damage, cost;
-        private int timer, ticksPerShot;
+        private int timer, ticksPerShot, flagBuilding;
         private Rectangle hitbox;
         private Van target;
 
-        public Tower(Rectangle hitbox, float damage, int ticksPerShot, float cost)
+        public Tower(Point location, int range, float damage, int ticksPerShot, float cost, int flagBuilding)
         {
-            this.hitbox = hitbox;
+            this.hitbox = new Rectangle(location.X - range, location.Y - range, range * 2, range * 2);
             this.damage = damage;
             this.ticksPerShot = ticksPerShot;
             this.cost = cost;
+            this.flagBuilding = flagBuilding;
         }
+
         public Rectangle Body
         {
             get { return hitbox; }
@@ -61,7 +63,14 @@ namespace TowerDefense_Test
             get { return ticksPerShot; }
             set { ticksPerShot = value; }
         }
-
+        public int Range
+        {
+            get { return Body.Width / 2; }
+        }
+        public int Flag
+        {
+            get { return flagBuilding; }
+        }
         public int Timer
         {
             get { return timer; }
@@ -91,6 +100,11 @@ namespace TowerDefense_Test
                 throw new Exception();
             timer = TicksPerShot;
             return Damage;
+        }
+
+        public Tower Copy()
+        {
+            return (Tower)this.MemberwiseClone();
         }
     }
 }
