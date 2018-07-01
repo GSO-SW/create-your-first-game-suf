@@ -84,7 +84,7 @@ namespace TowerDefense_Test
 
         public string pathCutter(string path, int cut)
         {
-            string[] ss = Application.StartupPath.Split('\\');
+            string[] ss = path.Split('\\');
             string s = "";
             for (int i = 0; i < ss.Length - cut; i++)
             {
