@@ -51,7 +51,6 @@
             this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Main_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
             this.ResumeLayout(false);
 

@@ -24,10 +24,6 @@ namespace TowerDefense_Test
         bool startSpawn, showHitbox;//bool fürs Vans spawnen und der Hitbox für die Tower
         int waveCounter;//Wellen zähler
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-        }
         public Main()
         {
             InitializeComponent();
@@ -38,7 +34,7 @@ namespace TowerDefense_Test
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            Resources.SpawnVan = 1;//50 Vans sollen gespawnt werden
+            Resources.SpawnVan = 50;//50 Vans sollen gespawnt werden
             Resources.TicksPerVan = 100;//ein Van soll alle 100 Ticks gespawnt werden
             Resources.CandyCounter = 50;//50 Startcandy
             Resources.LifeCounter = 10;//10 Leben
@@ -206,13 +202,12 @@ namespace TowerDefense_Test
 
             if (Resources.SpawnVan == 0 && vanInAction.Length == 0)//Wenn alle Vans kaputt sind hat man gewonnen
             {
-                g.DrawString("!!!Gewonnen!!!",new Font("XX",50,FontStyle.Bold),new SolidBrush(Color.Red),500,320);
-                //Application.Exit();
-            }
-            if(Resources.LifeCounter<=0)//Wenn man kein Leben mehr hat hat man verloren
+                g.DrawString("!!!Gewonnen!!!",new Font("XX",50,FontStyle.Bold),new SolidBrush(Color.Red),400,300);
+
+			}
+			if (Resources.LifeCounter<=0)//Wenn man kein Leben mehr hat hat man verloren
             {
-                g.DrawString("!!!Game Over!!!", new Font("XX", 50, FontStyle.Bold), new SolidBrush(Color.Red), 500, 320);
-                //Application.Exit();
+                g.DrawString("!!!Game Over!!!", new Font("XX", 50, FontStyle.Bold), new SolidBrush(Color.Red), 400, 300);
             }
 
 		}
