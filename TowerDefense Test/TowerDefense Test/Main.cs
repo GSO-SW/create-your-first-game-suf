@@ -174,8 +174,12 @@ namespace TowerDefense_Test
 				g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
                 if (checkBox1.Checked)
                     g.DrawRectangle(new Pen(Color.Red), tower.Body);
-                if (tower.Target != null && tower.Timer < 10)
-                    g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 50 + 10), tower.Location, tower.Target.LocationMiddle);
+                if (tower.Target != null)
+                {
+                    g.DrawLine(new Pen(Color.DarkGoldenrod, 1f), tower.Location, tower.Target.LocationMiddle);
+                    if (tower.Timer < 10)
+                        g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 100 + 10), tower.Location, tower.Target.LocationMiddle);
+                }
             }
             foreach (Van van in vanInAction)
             {
