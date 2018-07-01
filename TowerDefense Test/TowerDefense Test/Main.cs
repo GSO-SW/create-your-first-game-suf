@@ -37,7 +37,7 @@ namespace TowerDefense_Test
             Resources.SpawnVan = 50;
             Resources.TicksPerVan = 100;
             Resources.CandyCounter = 50;
-            Resources.LifeCounter = 500;
+            Resources.LifeCounter = 10;
 
             strasseGerade = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade.bmp"), 50, 50);
             strasseGeradeQuer = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
@@ -47,7 +47,7 @@ namespace TowerDefense_Test
             strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
             strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
             towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
-            towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
+			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
             towerInferno = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Inferno.bmp"), 200, 200);
 
             path = new Path(new Point[]
@@ -186,14 +186,16 @@ namespace TowerDefense_Test
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
                 g.DrawRectangle(new Pen(Color.Black), van.Body);
             }
-            g.DrawRectangle(new Pen(Color.Black), towerShop);
-            g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
-            g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
-            if (!startSpawn)
-                g.DrawString("Start", new Font("Arial", 26, FontStyle.Bold), Brushes.Black, startRec);
-            g.DrawString("  Laser-\n  Tower\n" + towerShopItem[0].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 780, 68);
-            g.DrawString("   Boom-\n   Tower\n" + towerShopItem[1].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 925, 68);
-        }
+			g.DrawRectangle(new Pen(Color.Black), towerShop);
+			g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
+			g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
+			if (!startSpawn)
+				g.DrawString("Start", new Font("Arial", 26, FontStyle.Bold), Brushes.Black, startRec);
+			g.DrawString("  Laser-\n  Tower\n" + towerShopItem[0].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 780, 68);
+			g.DrawString("   Boom-\n   Tower\n" + towerShopItem[1].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 925, 68);
+			g.DrawString(Resources.LifeCounter + " Leben", new Font("Arial", 18, FontStyle.Bold), new SolidBrush(Color.Black), 3, 60);
+			g.DrawString(Resources.CandyCounter + " Candy", new Font("Arial", 18, FontStyle.Bold), new SolidBrush(Color.Black), 3, 80);
+		}
         
         private void Main_MouseDown(object sender, MouseEventArgs e)
         {
