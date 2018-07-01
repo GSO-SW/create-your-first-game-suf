@@ -23,15 +23,15 @@ namespace TowerDefense_Test
         Tower selectedTower;
         Tower[] towerShopItem;
         Tower[] towerInAction;
-        //Bitmap strasseGerade = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade.bmp"), 50, 50);
-        //Bitmap strasseGeradeQuer = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
-        //Bitmap strasseKurveOR = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_OR.bmp"), 50, 50);
-        //Bitmap strasseKurveRU = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_RU.bmp"), 50, 50);
-        //Bitmap strasseKurveUL = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_UL.bmp"), 50, 50);
-        //Bitmap strasseKurveLO = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_LO.bmp"), 50, 50);
-        //Bitmap strasseKreuzung = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kreuzung.bmp"), 50, 50);
-        //Bitmap towerBuildingPlaceImage = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\TowerBuildingPlace.bmp"), 100, 100);
-        bool Selected, startSpawn;
+		Bitmap strasseGerade = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade.bmp"), 50, 50);
+		Bitmap strasseGeradeQuer = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
+		Bitmap strasseKurveOR = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_OR.bmp"), 50, 50);
+		Bitmap strasseKurveRU = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_RU.bmp"), 50, 50);
+		Bitmap strasseKurveUL = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_UL.bmp"), 50, 50);
+		Bitmap strasseKurveLO = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kurve_LO.bmp"), 50, 50);
+		Bitmap strasseKreuzung = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\Straße_Kreuzung.bmp"), 50, 50);
+		Bitmap towerBuildingPlaceImage = new Bitmap(Image.FromFile(Application.StartupPath + @"\bitmap\TowerBuildingPlace.bmp"), 100, 100);
+		bool Selected, startSpawn;
         int i;
 
         public Main()
@@ -90,62 +90,62 @@ namespace TowerDefense_Test
             SolidBrush blackBrush = new SolidBrush(Color.Black);
             g.DrawLines(Pens.Black, path.PathPoints);
 
-            //for (int i = path.PathPoints[0].Y; i < path.PathPoints[1].Y; i += 50)
-            //{
-            //	g.DrawImage(strasseGerade, path.PathPoints[1].X - 25, i);
-            //}
-            //for (int i = path.PathPoints[1].X - 25; i < path.PathPoints[2].X; i += 50)
-            //{
-            //	g.DrawImage(strasseGeradeQuer, i, path.PathPoints[2].Y - 25);
-            //}
-            //for (int i = path.PathPoints[3].Y; i < path.PathPoints[2].Y; i += 50)
-            //{
-            //	g.DrawImage(strasseGerade, path.PathPoints[3].X - 25, i - 25);
-            //}
-            //for (int i = path.PathPoints[3].X - 25; i < path.PathPoints[4].X; i += 50)
-            //{
-            //	g.DrawImage(strasseGeradeQuer, i, path.PathPoints[4].Y - 25);
-            //}
-            //for (int i = path.PathPoints[5].Y; i < path.PathPoints[4].Y; i += 50)
-            //{
-            //	g.DrawImage(strasseGerade, path.PathPoints[5].X - 25, i - 25);
-            //}
-            //for (int i = path.PathPoints[6].X - 25; i < path.PathPoints[5].X; i += 50)
-            //{
-            //	g.DrawImage(strasseGeradeQuer, i, path.PathPoints[6].Y - 25);
-            //}
-            //for (int i = path.PathPoints[6].Y; i < path.PathPoints[7].Y; i += 50)
-            //{
-            //	g.DrawImage(strasseGerade, path.PathPoints[7].X - 25, i - 25);
-            //}
-            //for (int i = path.PathPoints[7].X - 25; i < path.PathPoints[8].X; i += 50)
-            //{
-            //	g.DrawImage(strasseGeradeQuer, i, path.PathPoints[8].Y - 25);
-            //}
-            //for (int i = path.PathPoints[9].Y; i < path.PathPoints[8].Y; i += 50)
-            //{
-            //	g.DrawImage(strasseGerade, path.PathPoints[9].X - 25, i - 25);
-            //}
-            //for (int i = path.PathPoints[9].X - 25; i < path.PathPoints[10].X; i += 50)
-            //{
-            //	g.DrawImage(strasseGeradeQuer, i, path.PathPoints[10].Y - 25);
-            //}
-            //g.DrawImage(strasseKurveOR, path.PathPoints[1].X - 25, path.PathPoints[1].Y - 25);
-            //g.DrawImage(strasseKurveLO, path.PathPoints[2].X - 25, path.PathPoints[2].Y - 25);
-            //g.DrawImage(strasseKurveRU, path.PathPoints[3].X - 25, path.PathPoints[3].Y - 25);
-            //g.DrawImage(strasseKurveLO, path.PathPoints[4].X - 25, path.PathPoints[4].Y - 25);
-            //g.DrawImage(strasseKurveUL, path.PathPoints[5].X - 25, path.PathPoints[5].Y - 25);
-            //g.DrawImage(strasseKurveRU, path.PathPoints[6].X - 25, path.PathPoints[6].Y - 25);
-            //g.DrawImage(strasseKurveOR, path.PathPoints[7].X - 25, path.PathPoints[7].Y - 25);
-            //g.DrawImage(strasseKurveLO, path.PathPoints[8].X - 25, path.PathPoints[8].Y - 25);
-            //g.DrawImage(strasseKurveRU, path.PathPoints[9].X - 25, path.PathPoints[9].Y - 25);
-            //g.DrawImage(strasseKreuzung, path.PathPoints[7].X - 25, path.PathPoints[4].Y - 25);
-            //foreach (Rectangle item in TowerBuildingPlace)
-            //{
-            //	g.DrawImage(towerBuildingPlaceImage, item);
-            //}
+			for (int i = path.PathPoints[0].Y; i < path.PathPoints[1].Y; i += 50)
+			{
+				g.DrawImage(strasseGerade, path.PathPoints[1].X - 25, i);
+			}
+			for (int i = path.PathPoints[1].X - 25; i < path.PathPoints[2].X; i += 50)
+			{
+				g.DrawImage(strasseGeradeQuer, i, path.PathPoints[2].Y - 25);
+			}
+			for (int i = path.PathPoints[3].Y; i < path.PathPoints[2].Y; i += 50)
+			{
+				g.DrawImage(strasseGerade, path.PathPoints[3].X - 25, i - 25);
+			}
+			for (int i = path.PathPoints[3].X - 25; i < path.PathPoints[4].X; i += 50)
+			{
+				g.DrawImage(strasseGeradeQuer, i, path.PathPoints[4].Y - 25);
+			}
+			for (int i = path.PathPoints[5].Y; i < path.PathPoints[4].Y; i += 50)
+			{
+				g.DrawImage(strasseGerade, path.PathPoints[5].X - 25, i - 25);
+			}
+			for (int i = path.PathPoints[6].X - 25; i < path.PathPoints[5].X; i += 50)
+			{
+				g.DrawImage(strasseGeradeQuer, i, path.PathPoints[6].Y - 25);
+			}
+			for (int i = path.PathPoints[6].Y; i < path.PathPoints[7].Y; i += 50)
+			{
+				g.DrawImage(strasseGerade, path.PathPoints[7].X - 25, i - 25);
+			}
+			for (int i = path.PathPoints[7].X - 25; i < path.PathPoints[8].X; i += 50)
+			{
+				g.DrawImage(strasseGeradeQuer, i, path.PathPoints[8].Y - 25);
+			}
+			for (int i = path.PathPoints[9].Y; i < path.PathPoints[8].Y; i += 50)
+			{
+				g.DrawImage(strasseGerade, path.PathPoints[9].X - 25, i - 25);
+			}
+			for (int i = path.PathPoints[9].X - 25; i < path.PathPoints[10].X; i += 50)
+			{
+				g.DrawImage(strasseGeradeQuer, i, path.PathPoints[10].Y - 25);
+			}
+			g.DrawImage(strasseKurveOR, path.PathPoints[1].X - 25, path.PathPoints[1].Y - 25);
+			g.DrawImage(strasseKurveLO, path.PathPoints[2].X - 25, path.PathPoints[2].Y - 25);
+			g.DrawImage(strasseKurveRU, path.PathPoints[3].X - 25, path.PathPoints[3].Y - 25);
+			g.DrawImage(strasseKurveLO, path.PathPoints[4].X - 25, path.PathPoints[4].Y - 25);
+			g.DrawImage(strasseKurveUL, path.PathPoints[5].X - 25, path.PathPoints[5].Y - 25);
+			g.DrawImage(strasseKurveRU, path.PathPoints[6].X - 25, path.PathPoints[6].Y - 25);
+			g.DrawImage(strasseKurveOR, path.PathPoints[7].X - 25, path.PathPoints[7].Y - 25);
+			g.DrawImage(strasseKurveLO, path.PathPoints[8].X - 25, path.PathPoints[8].Y - 25);
+			g.DrawImage(strasseKurveRU, path.PathPoints[9].X - 25, path.PathPoints[9].Y - 25);
+			g.DrawImage(strasseKreuzung, path.PathPoints[7].X - 25, path.PathPoints[4].Y - 25);
+			foreach (Rectangle item in towerBuildingPlace)
+			{
+				g.DrawImage(towerBuildingPlaceImage, item);
+			}
 
-            foreach (Van van in vanInAction)
+			foreach (Van van in vanInAction)
             {
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
                 g.DrawRectangle(new Pen(Color.Black), van.Body);
@@ -159,7 +159,7 @@ namespace TowerDefense_Test
             }
             g.DrawRectangle(new Pen(Color.Black), towerShop);
             g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
-            g.DrawRectangles(new Pen(Color.Black, 5f), towerBuildingPlace);
+            g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
             g.DrawString("  Laser-\n  Tower\n" + towerShopItem[0].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 780, 68);
             g.DrawString("   Boom-\n   Tower\n" + towerShopItem[1].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 925, 68);
         }
