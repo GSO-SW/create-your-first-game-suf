@@ -19,37 +19,38 @@ namespace TowerDefense_Test
         Van[] vanInAction;
         Rectangle[] towerBuildingPlace;
         Rectangle[] towerShopItemRec;
-        Rectangle towerShop;
+        Rectangle towerShop, startRec;
         Tower selectedTower;
         Tower[] towerShopItem;
         Tower[] towerInAction;
-		Bitmap strasseGerade;
-		Bitmap strasseGeradeQuer;
-		Bitmap strasseKurveOR;
-		Bitmap strasseKurveRU;
-		Bitmap strasseKurveUL;
-		Bitmap strasseKurveLO;
-		Bitmap strasseKreuzung;
-		Bitmap towerBuildingPlaceImage;
-		bool startSpawn;
-        int i;
+        Bitmap strasseGerade;
+        Bitmap strasseGeradeQuer;
+        Bitmap strasseKurveOR;
+        Bitmap strasseKurveRU;
+        Bitmap strasseKurveUL;
+        Bitmap strasseKurveLO;
+        Bitmap strasseKreuzung;
+        Bitmap towerBuildingPlaceImage;
+        bool startSpawn;
+        int waveCounter;
 
         public Main()
         {
-			strasseGerade = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade.bmp"), 50, 50);
-			strasseGeradeQuer = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
-			strasseKurveOR = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_OR.bmp"), 50, 50);
-			strasseKurveRU = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_RU.bmp"), 50, 50);
-			strasseKurveUL = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_UL.bmp"), 50, 50);
-			strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
-			strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
-			towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
+            strasseGerade = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade.bmp"), 50, 50);
+            strasseGeradeQuer = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Gerade_Quer.bmp"), 50, 50);
+            strasseKurveOR = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_OR.bmp"), 50, 50);
+            strasseKurveRU = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_RU.bmp"), 50, 50);
+            strasseKurveUL = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_UL.bmp"), 50, 50);
+            strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
+            strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
+            towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
 
-			InitializeComponent();
+            InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 
             Resources.SpawnVan = 50;
             Resources.TicksPerVan = 100;
@@ -87,8 +88,10 @@ namespace TowerDefense_Test
             towerShopItemRec[0] = new Rectangle(775, 50, 100, 100);
             towerShopItem[0] = new Tower(Point.Empty, 150, 5, 5, 50, 0);
             towerShopItemRec[1] = new Rectangle(925, 50, 100, 100);
-            towerShopItem[1] = new Tower(Point.Empty, 200, 500, 1000, 100, 0);
+            towerShopItem[1] = new Tower(Point.Empty, 200, 500, 200, 100, 0);
             towerShop = new Rectangle(725, -1, 500, 200);
+            //Start
+            startRec = new Rectangle(5, 5, 100, 40);
         }
 
         public string pathCutter(string path, int cut)
@@ -163,22 +166,25 @@ namespace TowerDefense_Test
             {
                 g.DrawImage(towerBuildingPlaceImage, item);
             }
-
+            foreach (Tower tower in towerInAction)
+            {
+                if (checkBox1.Checked)
+                    g.DrawRectangle(new Pen(Color.Red), tower.Body);
+                if (tower.Target != null )
+                    g.DrawLine(Pens.ForestGreen, tower.Location, tower.Target.LocationMiddle);
+            }
             foreach (Van van in vanInAction)
             {
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
                 g.DrawRectangle(new Pen(Color.Black), van.Body);
 
             }
-            foreach (Tower tower in towerInAction)
-            {
-                g.DrawRectangle(new Pen(Color.Red), tower.Body);
-                if (tower.Target != null)
-                    g.DrawLine(Pens.ForestGreen, tower.Location, tower.Target.LocationMiddle);
-            }
+
             g.DrawRectangle(new Pen(Color.Black), towerShop);
             g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
             g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
+            if (!startSpawn)
+                g.DrawString("Start", new Font("Arial", 26, FontStyle.Bold), Brushes.Black, startRec);
             g.DrawString("  Laser-\n  Tower\n" + towerShopItem[0].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 780, 68);
             g.DrawString("   Boom-\n   Tower\n" + towerShopItem[1].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 925, 68);
         }
@@ -207,7 +213,7 @@ namespace TowerDefense_Test
                 if (tower.Target != null && tower.Timer == 0)
                     tower.Target.Damage(tower.ShotDamage());
             }
-            WaveTimer();
+            waveTimer();
             updateCounterLabel();
             Invalidate();
         }
@@ -330,14 +336,7 @@ namespace TowerDefense_Test
 
         private void updateCounterLabel()
         {
-            label1.Text = "Candy: " + Resources.CandyCounter.ToString();
-            label2.Text = "Health: " + Resources.LifeCounter.ToString();
-            if (towerInAction.Length > 0 && towerInAction[0].Target != null)
-                label3.Text = "Tower0TargetPercent: " + towerInAction[0].Target.HealthPercent + "%";
-            else
-                label3.Text = "Tower0TargetPercent: null";
 
-            waveCountLabel.Text = "Wave:" + Resources.WaveCount.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -366,6 +365,8 @@ namespace TowerDefense_Test
                 }
                 else //Wenn auf dem Spielfeld
                 {
+                    if (startRec.Contains(p))
+                        startSpawn = true;
                     //UPGRADE
                 }
             }
@@ -407,23 +408,23 @@ namespace TowerDefense_Test
             //Resources.WaveCount++;
         }
 
-        private void WaveTimer()
+        private void waveTimer()
         {
             if (!startSpawn)
                 return;
-            if (i == 0 && Resources.SpawnVan > 0)
+            if (waveCounter == 0 && Resources.SpawnVan > 0)
             {
                 addVan(new Size(50, 20), path.StartPath, 200f, 150f);
                 Resources.SpawnVan--;
-                i = Resources.TicksPerVan;
+                waveCounter = Resources.TicksPerVan;
             }
             if (Resources.SpawnVan == 0)
             {
                 Resources.WaveCount++;
             }
-            if (i >= 0)
+            if (waveCounter >= 0)
             {
-                i--;
+                waveCounter--;
             }
         }
     }
