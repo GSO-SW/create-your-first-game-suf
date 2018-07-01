@@ -31,6 +31,7 @@ namespace TowerDefense_Test
 		Bitmap strasseKurveLO;
 		Bitmap strasseKreuzung;
 		Bitmap towerBuildingPlaceImage;
+		Bitmap towerPoison;
 		bool startSpawn;
         int i;
 
@@ -44,6 +45,7 @@ namespace TowerDefense_Test
 			strasseKurveLO = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kurve_LO.bmp"), 50, 50);
 			strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
 			towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
+			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
 
 			InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer, true);
@@ -77,8 +79,8 @@ namespace TowerDefense_Test
             //Tower building places
             towerBuildingPlace = new Rectangle[5];
             towerBuildingPlace[0] = new Rectangle(200, 175, 100, 100);
-            towerBuildingPlace[1] = new Rectangle(200, 475, 100, 100);
-            towerBuildingPlace[2] = new Rectangle(550, 475, 100, 100);
+            towerBuildingPlace[1] = new Rectangle(200, 425, 100, 100);
+            towerBuildingPlace[2] = new Rectangle(550, 425, 100, 100);
             towerBuildingPlace[3] = new Rectangle(950, 425, 100, 100);
             towerBuildingPlace[4] = new Rectangle(550, 125, 100, 100);
             //Tower menu
@@ -175,8 +177,11 @@ namespace TowerDefense_Test
                 g.DrawRectangle(new Pen(Color.Red), tower.Body);
                 if (tower.Target != null)
                     g.DrawLine(Pens.ForestGreen, tower.Location, tower.Target.LocationMiddle);
-            }
-            g.DrawRectangle(new Pen(Color.Black), towerShop);
+				Color backColor = towerPoison.GetPixel(1, 1);
+				towerPoison.MakeTransparent(backColor);
+				g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
+			}
+			g.DrawRectangle(new Pen(Color.Black), towerShop);
             g.DrawRectangles(new Pen(Color.Black, 5f), towerShopItemRec);
             g.DrawRectangles(new Pen(Color.Transparent, 5f), towerBuildingPlace);
             g.DrawString("  Laser-\n  Tower\n" + towerShopItem[0].Cost + " Candy", new Font("Arial", 14, FontStyle.Bold), new SolidBrush(Color.Black), 780, 68);
@@ -379,7 +384,7 @@ namespace TowerDefense_Test
                         {
                             if (item.Flag == i)
                             {
-                                selectedTower = null;
+								selectedTower = null;
                                 Cursor = Cursors.Default;
                                 return;
                             }
