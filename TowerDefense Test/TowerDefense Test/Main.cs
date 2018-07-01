@@ -31,6 +31,7 @@ namespace TowerDefense_Test
         Bitmap strasseKreuzung;
         Bitmap towerBuildingPlaceImage;
 		Bitmap towerPoison;
+		Bitmap towerInferno;
 		bool startSpawn, showHitbox;
         int waveCounter;
 
@@ -45,6 +46,7 @@ namespace TowerDefense_Test
             strasseKreuzung = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Straße_Kreuzung.bmp"), 50, 50);
             towerBuildingPlaceImage = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\TowerBuildingPlace.bmp"), 100, 100);
 			towerPoison = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Poison.bmp"), 200, 200);
+			towerInferno = new Bitmap(Image.FromFile(pathCutter(Application.StartupPath, 2) + @"bitmap\Tower_Inferno.bmp"), 200, 200);
 
 			InitializeComponent();
 
@@ -171,8 +173,6 @@ namespace TowerDefense_Test
             }
             foreach (Tower tower in towerPlaced)
             {
-				Color backColor = towerPoison.GetPixel(1, 1);
-				towerPoison.MakeTransparent(backColor);
                 if (showHitbox)
                     g.DrawRectangle(new Pen(Color.Red), tower.Body);
                 if (tower.Target != null)
@@ -181,8 +181,20 @@ namespace TowerDefense_Test
                     if (tower.Timer < 10)
                         g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 100 + 10), tower.Location, tower.Target.LocationMiddle);
                 }
-                g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
-            }
+				if(tower == towerShopItem[0])
+				{
+					Color backColorPoison = towerPoison.GetPixel(1, 1);
+					towerPoison.MakeTransparent(backColorPoison);
+					g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
+				}
+				if (tower == towerShopItem[1])
+				{
+					Color backColorInferno = towerInferno.GetPixel(1, 1);
+					towerInferno.MakeTransparent(backColorInferno);
+					g.DrawImage(towerInferno, tower.Location.X - 100, tower.Location.Y - 100);
+				}
+
+			}
             foreach (Van van in vanInAction)
             {
                 g.FillRectangle(new SolidBrush(getVanColor(van.HealthPercent)), van.Body);
