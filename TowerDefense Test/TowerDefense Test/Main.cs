@@ -181,13 +181,13 @@ namespace TowerDefense_Test
                     if (tower.Timer < 10)
                         g.DrawLine(new Pen(Color.DarkGoldenrod, tower.Damage / 100 + 10), tower.Location, tower.Target.LocationMiddle);
                 }
-				if(tower == towerShopItem[0])
+				if(tower.Type == towerShopItem[0].Type)
 				{
 					Color backColorPoison = towerPoison.GetPixel(1, 1);
 					towerPoison.MakeTransparent(backColorPoison);
 					g.DrawImage(towerPoison, tower.Location.X - 100, tower.Location.Y - 100);
 				}
-				if (tower == towerShopItem[1])
+				else if (tower.Type == towerShopItem[1].Type)
 				{
 					Color backColorInferno = towerInferno.GetPixel(1, 1);
 					towerInferno.MakeTransparent(backColorInferno);
